@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aster Luxury - Exquisite Jewelry Collections</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #c9a961;
+            --secondary-color: #1a1a1a;
+            --accent-color: #f8f8f8;
+            --text-color: #555;
+            --light-bg: #f9f9f9;
+            --gold-gradient: linear-gradient(135deg, #c9a961, #f0d890, #c9a961);
+            --luxury-dark: #111;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            line-height: 1.6;
+            background-color: #fff;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 15px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+            position: relative;
+        }
+        
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--gold-gradient);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--secondary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--gold-gradient);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .header-icons {
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-icons a {
+            margin-left: 15px;
+            color: var(--secondary-color);
+            font-size: 1.1rem;
+            position: relative;
+        }
+        
+        .header-icons a:hover {
+            color: var(--primary-color);
+        }
+        
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: var(--primary-color);
+            color: white;
+            font-size: 0.7rem;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero {
+            height: 100vh;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--luxury-dark), #333);
+            z-index: -2;
+        }
+        
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background-color: rgba(201, 169, 97, 0.2);
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            text-align: center;
+            color: #fff;
+            padding: 0 20px;
+            z-index: 1;
+            animation: fadeInUp 1.5s ease-out;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+            background: linear-gradient(90deg, #fff, var(--primary-color), #fff);
+            background-size: 200% auto;
+            color: transparent;
+            -webkit-background-clip: text;
+            background-clip: text;
+            animation: shine 3s linear infinite;
+        }
+        
+        @keyframes shine {
+            to {
+                background-position: 200% center;
+            }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--gold-gradient);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+            letter-spacing: 0.5px;
+            border: 2px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(201, 169, 97, 0.3);
+        }
+        
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin: 60px 0 40px;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background: var(--gold-gradient);
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .collections {
+            padding: 60px 0;
+            background-color: var(--light-bg);
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--secondary-color);
+            padding: 8px 20px;
+            margin: 5px;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .product-card {
+            background-color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold-gradient);
+            color: white;
+            font-size: 0.7rem;
+            padding: 5px 10px;
+            border-radius: 20px;
+            z-index: 1;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+        
+        .product-image {
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-actions {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            display: flex;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .product-card:hover .product-actions {
+            opacity: 1;
+        }
+        
+        .action-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.9);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .action-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .product-info {
+            padding: 20px;
+        }
+        
+        .product-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+            color: var(--secondary-color);
+        }
+        
+        .product-description {
+            margin-bottom: 15px;
+            font-size: 0.85rem;
+            line-height: 1.5;
+            color: var(--text-color);
+        }
+        
+        .product-price {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        .product-btn {
+            display: inline-block;
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+        }
+        
+        .product-btn:hover {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+        
+        .lookbook {
+            padding: 80px 0;
+            background-color: #fff;
+        }
+        
+        .lookbook-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .lookbook-item {
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .lookbook-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .lookbook-item:hover img {
+            transform: scale(1.05);
+        }
+        
+        .lookbook-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+        
+        .lookbook-item:hover .lookbook-overlay {
+            transform: translateY(0);
+        }
+        
+        footer {
+            background-color: var(--secondary-color);
+            color: #fff;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-column h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-column ul li a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 0.9rem;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary-color);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+        
+        /* Modal styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background-color: #fff;
+            width: 90%;
+            max-width: 800px;
+            max-height: 90vh;
+            overflow-y: auto;
+            border-radius: 8px;
+            position: relative;
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--secondary-color);
+            z-index: 1;
+        }
+        
+        .modal-body {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        
+        .modal-image {
+            flex: 1 1 50%;
+            min-width: 300px;
+        }
+        
+        .modal-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .modal-info {
+            flex: 1 1 50%;
+            padding: 30px;
+            min-width: 300px;
+        }
+        
+        .modal-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 15px;
+            color: var(--secondary-color);
+        }
+        
+        .modal-price {
+            font-size: 1.5rem;
+            font-weight: 500;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        
+        .modal-description {
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .modal-options {
+            margin-bottom: 30px;
+        }
+        
+        .option-label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        
+        .option-select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-bottom: 15px;
+        }
+        
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .quantity-btn {
+            width: 40px;
+            height: 40px;
+            border: 1px solid var(--primary-color);
+            background-color: transparent;
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .quantity-btn:hover {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .quantity-input {
+            width: 60px;
+            height: 40px;
+            text-align: center;
+            border: 1px solid #ddd;
+            margin: 0 10px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 12px;
+            border-radius: 30px;
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .add-to-cart {
+            background: var(--gold-gradient);
+            color: white;
+            border: none;
+        }
+        
+        .add-to-wishlist {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 1px solid var(--primary-color);
+        }
+        
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Toast notification */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 4px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s;
+            z-index: 3000;
+        }
+        
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero {
+                height: 80vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .modal-body {
+                flex-direction: column;
+            }
+            
+            .modal-image, .modal-info {
+                flex: 1 1 100%;
+            }
+        }
+        
+        /* Luxury animation elements */
+        .luxury-shape {
+            position: absolute;
+            border: 2px solid rgba(201, 169, 97, 0.2);
+            border-radius: 50%;
+            animation: float 20s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.3;
+            }
+        }
+        
+        .luxury-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(201, 169, 97, 0.3), transparent);
+            height: 1px;
+            width: 100%;
+            animation: slide 10s infinite linear;
+        }
+        
+        @keyframes slide {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                90deg,
+                transparent,
+                rgba(255, 255, 255, 0.2),
+                transparent
+            );
+            transform: translateX(-100%);
+            animation: shimmer 2s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% {
+                transform: translateX(100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Aster Luxury</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#collections">Collections</a></li>
+                    <li><a href="#lookbook">Lookbook</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-icons">
+                <a href="#"><i class="fas fa-search"></i></a>
+                <a href="#"><i class="far fa-heart"></i></a>
+                <a href="#">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="cart-count">0</span>
+                </a>
+            </div>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="particles" id="particles"></div>
+        
+        <!-- Luxury animation elements -->
+        <div class="luxury-shape" style="width: 300px; height: 300px; top: 10%; left: 10%;"></div>
+        <div class="luxury-shape" style="width: 200px; height: 200px; top: 60%; right: 15%; animation-delay: -5s;"></div>
+        <div class="luxury-shape" style="width: 150px; height: 150px; bottom: 20%; left: 20%; animation-delay: -10s;"></div>
+        <div class="luxury-line" style="top: 30%;"></div>
+        <div class="luxury-line" style="top: 70%; animation-delay: -5s;"></div>
+        
+        <div class="hero-content">
+            <h1>Aster Luxury</h1>
+            <p>Where timeless elegance meets contemporary design. Discover our exquisite collection of handcrafted jewelry, meticulously crafted for the discerning connoisseur.</p>
+            <a href="#collections" class="btn">Explore Collections</a>
+        </div>
+    </section>
+    
+    <section id="collections" class="collections">
+        <div class="container">
+            <h2 class="section-title">Featured Collections</h2>
+            
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="new">New Arrivals</button>
+                <button class="filter-btn" data-filter="trending">Trending</button>
+                <button class="filter-btn" data-filter="exclusive">Exclusive</button>
+                <button class="filter-btn" data-filter="limited">Limited Edition</button>
+            </div>
+            
+            <div class="product-grid">
+                <!-- Product 1 -->
+                <div class="product-card" data-category="new">
+                    <div class="product-badge">NEW</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/41bb6918-eb0c-492a-bce7-64f832484d6c_1688_image_share_e49e3b26ca2b4ed4a72b2eb7958cd2a3.jpg?auth_key=1864593401-177dae8d027943a7bc5969f4097db792-0-333dead413de166fc47b156300c88ac3" alt="Diamond Elegance Set">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="1">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="1">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Diamond Elegance</h3>
+                        <p class="product-description">Exquisite diamond necklace and earrings with delicate black feather accents. Captures sophistication and glamour for special occasions.</p>
+                        <div class="product-price">$1,299</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="1">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 2 -->
+                <div class="product-card" data-category="trending">
+                    <div class="product-badge">TRENDING</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/943bd0bd-769f-45b4-a482-70d665f3849c_1688_image_share_e52dac51e491cc0a448f25b385e721eb.jpg?auth_key=1864593401-6430bf1c3a254203b872ca9aa7ad8e54-0-0b71e3e8eb7a4d194890cb578bb9f188" alt="Jade Harmony Collection">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="2">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="2">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Jade Harmony</h3>
+                        <p class="product-description">Golden chains with serene green jade rings and delicate beadwork. Symbolizes harmony between tradition and contemporary style.</p>
+                        <div class="product-price">$899</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="2">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 3 -->
+                <div class="product-card" data-category="all">
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/92b2c8e9-062c-4f10-8e12-ce7e4015bcd0_1688_image_share_e08243ce8e5abab0324d4e757db01c6b(1).jpg?auth_key=1864593401-7e917c957ff04e5f820284ec5206a0c3-0-5af99bd87a0d6f4c59405ff0f11fce22" alt="Golden Spiral Dreams">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="3">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="3">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Golden Spiral</h3>
+                        <p class="product-description">Mesmerizing golden spiral necklace and earrings embodying eternal flow. A perfect statement piece for artistic expression.</p>
+                        <div class="product-price">$1,149</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="3">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 4 -->
+                <div class="product-card" data-category="exclusive">
+                    <div class="product-badge">EXCLUSIVE</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/7b541b9a-7561-4f57-8a3b-802aea311a07_1688_image_share_eb7b4ed65459bd6ac0df3082b8a1e24e.jpg?auth_key=1864593401-39a07cf36b5f4161812bc154927ce923-0-66091bca29752ed8d1cf19ddf6f89810" alt="Azure Mystique Set">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="4">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="4">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Azure Mystique</h3>
+                        <p class="product-description">Enchanting blue gemstones in sterling silver create an ethereal combination. Evokes twilight skies for evening elegance.</p>
+                        <div class="product-price">$1,599</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="4">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 5 -->
+                <div class="product-card" data-category="all">
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/48c63669-8ea4-4c71-8f43-11168aa4a0fc_1688_image_share_f1a78823263dc932cd0b36ce3a4d4d0b.jpg?auth_key=1864593401-2e3f6b2678714d5691a3fcc9f2aa42ee-0-6d01659c40b1d72cb75bdea8bcb051fc" alt="Golden Radiance Collection">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="5">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="5">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Golden Radiance</h3>
+                        <p class="product-description">Dazzling gold with brilliant crystals that capture and reflect light. Exudes warmth and luxury with a luminous glow.</p>
+                        <div class="product-price">$1,399</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="5">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 6 -->
+                <div class="product-card" data-category="limited">
+                    <div class="product-badge">LIMITED</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/70d32667-33d7-4d4b-ae2c-f4e877a650f7_1688_image_share_f4dc5beb2a76a5b556eb3f025711360f.jpg?auth_key=1864593401-a94b80eb099543d88386c3da1312f629-0-1f60cc8e663ec5a9bc2f3284a4e8f56f" alt="Crystal Brilliance Set">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="6">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="6">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Crystal Brilliance</h3>
+                        <p class="product-description">Clear gemstones surrounded by delicate diamond accents. Creates a rainbow of reflections perfect for special occasions.</p>
+                        <div class="product-price">$1,799</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="6">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 7 -->
+                <div class="product-card" data-category="all">
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/35dc8a69-6e9f-412b-950f-910b0810cae4_1759578304918(1).png?auth_key=1864593401-5a899e6f14e742fc98248af850325264-0-7a6a391dffe0340bcaccf10f4db2fe9e" alt="Royal Amethyst Garden">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="7">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="7">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Royal Amethyst</h3>
+                        <p class="product-description">Nature-inspired silver with delicate flower and leaf motifs adorned with regal purple amethysts. Captures mystical garden beauty.</p>
+                        <div class="product-price">$1,249</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="7">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 8 -->
+                <div class="product-card" data-category="trending">
+                    <div class="product-badge">BESTSELLER</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/c923fe2a-f35d-4f18-b9e8-99d480793fe4_IMG_20251009_194258.jpg?auth_key=1864593401-3f251c4db1694897af001aa9aeadab65-0-2457269966f4c1b2635cf9079e2994ce" alt="Crystal Leaf Symphony">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="8">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="8">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Crystal Leaf</h3>
+                        <p class="product-description">Leaf-shaped necklace and earrings crafted from brilliant crystals. Captures autumn foliage transformed into wearable art.</p>
+                        <div class="product-price">$1,099</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="8">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 9 -->
+                <div class="product-card" data-category="all">
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/78da0c19-6a83-472e-a805-4d0949d1a5ae_IMG_20251011_190812.jpg?auth_key=1864593401-fcef9b66bae140ca992f22fb4e4ae0eb-0-7c51521bddf38c7a37c67a04ad39e737" alt="Stellar Dreams Collection">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="9">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="9">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Stellar Dreams</h3>
+                        <p class="product-description">Silver chains with precisely cut gemstones in various shapes. Captures starlit sky brilliance with dazzling display.</p>
+                        <div class="product-price">$1,449</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="9">Add to Cart</a>
+                    </div>
+                </div>
+                
+                <!-- Product 10 -->
+                <div class="product-card" data-category="new">
+                    <div class="product-badge">NEW ARRIVAL</div>
+                    <div class="product-image">
+                        <img src="https://z-cdn-media.chatglm.cn/files/5b2bc50d-d6a7-4723-a1d4-4611b477c5e0_IMG_20251012_002729.jpg?auth_key=1864593401-d646893adb8d496ab87963ce0d8dacb1-0-be2c87c8482b894354921f6b9570820a" alt="Floral Elegance Duo">
+                        <div class="product-actions">
+                            <div class="action-btn quick-view" data-product-id="10">
+                                <i class="fas fa-eye"></i>
+                            </div>
+                            <div class="action-btn add-to-wishlist" data-product-id="10">
+                                <i class="far fa-heart"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-info">
+                        <h3 class="product-title">Floral Elegance</h3>
+                        <p class="product-description">Two floral-inspired necklaces in silver and gold with intricate designs. Versatile pair celebrating nature's delicate beauty.</p>
+                        <div class="product-price">$999</div>
+                        <a href="#" class="product-btn add-to-cart" data-product-id="10">Add to Cart</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="lookbook" class="lookbook">
+        <div class="container">
+            <h2 class="section-title">Luxury Lookbook</h2>
+            <div class="lookbook-grid">
+                <div class="lookbook-item">
+                    <img src="https://picsum.photos/seed/luxury1/600/400.jpg" alt="Luxury Collection 1">
+                    <div class="lookbook-overlay">
+                        <h3>Summer Elegance</h3>
+                        <p>Discover our latest summer collection inspired by Mediterranean beauty</p>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://picsum.photos/seed/luxury2/600/400.jpg" alt="Luxury Collection 2">
+                    <div class="lookbook-overlay">
+                        <h3>Evening Glamour</h3>
+                        <p>Stunning pieces for your most special occasions</p>
+                    </div>
+                </div>
+                <div class="lookbook-item">
+                    <img src="https://picsum.photos/seed/luxury3/600/400.jpg" alt="Luxury Collection 3">
+                    <div class="lookbook-overlay">
+                        <h3>Timeless Classics</h3>
+                        <p>Enduring designs that transcend seasons and trends</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>About Aster Luxury</h3>
+                    <p>Discover our exquisite collection of handcrafted jewelry, where timeless elegance meets contemporary design.</p>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/aster_luxury2" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">New Arrivals</a></li>
+                        <li><a href="#">Best Sellers</a></li>
+                        <li><a href="#">Collections</a></li>
+                        <li><a href="#">Gift Cards</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul>
+                        <li><a href="https://wa.me/9647503307830" target="_blank">WhatsApp: +9647503307830</a></li>
+                        <li><a href="#">Shipping & Returns</a></li>
+                        <li><a href="#">Size Guide</a></li>
+                        <li><a href="#">Jewelry Care</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Aster Luxury. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Product Modal -->
+    <div id="product-modal" class="modal">
+        <div class="modal-content">
+            <span class="modal-close">&times;</span>
+            <div class="modal-body">
+                <div class="modal-image">
+                    <img id="modal-image" src="" alt="Product Image">
+                </div>
+                <div class="modal-info">
+                    <h2 class="modal-title" id="modal-title"></h2>
+                    <div class="modal-price" id="modal-price"></div>
+                    <p class="modal-description" id="modal-description"></p>
+                    
+                    <div class="modal-options">
+                        <label class="option-label">Material</label>
+                        <select class="option-select">
+                            <option>18K Gold</option>
+                            <option>White Gold</option>
+                            <option>Rose Gold</option>
+                            <option>Platinum</option>
+                        </select>
+                        
+                        <label class="option-label">Size</label>
+                        <select class="option-select">
+                            <option>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                    </div>
+                    
+                    <div class="quantity-selector">
+                        <button class="quantity-btn decrease">-</button>
+                        <input type="number" class="quantity-input" value="1" min="1" max="10">
+                        <button class="quantity-btn increase">+</button>
+                    </div>
+                    
+                    <div class="modal-actions">
+                        <button class="modal-btn add-to-cart" id="modal-add-to-cart">Add to Cart</button>
+                        <button class="modal-btn add-to-wishlist" id="modal-add-to-wishlist">Add to Wishlist</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+    
+    <script>
+        // Product data
+        const products = {
+            1: {
+                title: "Diamond Elegance",
+                price: "$1,299",
+                description: "Exquisite diamond necklace and earrings with delicate black feather accents. Captures sophistication and glamour for special occasions. Crafted with precision using ethically sourced diamonds and 18K white gold.",
+                image: "https://z-cdn-media.chatglm.cn/files/41bb6918-eb0c-492a-bce7-64f832484d6c_1688_image_share_e49e3b26ca2b4ed4a72b2eb7958cd2a3.jpg?auth_key=1864593401-177dae8d027943a7bc5969f4097db792-0-333dead413de166fc47b156300c88ac3"
+            },
+            2: {
+                title: "Jade Harmony",
+                price: "$899",
+                description: "Golden chains with serene green jade rings and delicate beadwork. Symbolizes harmony between tradition and contemporary style. Each piece is handcrafted by our master artisans.",
+                image: "https://z-cdn-media.chatglm.cn/files/943bd0bd-769f-45b4-a482-70d665f3849c_1688_image_share_e52dac51e491cc0a448f25b385e721eb.jpg?auth_key=1864593401-6430bf1c3a254203b872ca9aa7ad8e54-0-0b71e3e8eb7a4d194890cb578bb9f188"
+            },
+            3: {
+                title: "Golden Spiral",
+                price: "$1,149",
+                description: "Mesmerizing golden spiral necklace and earrings embodying eternal flow. A perfect statement piece for artistic expression. The spiral design represents infinity and continuous growth.",
+                image: "https://z-cdn-media.chatglm.cn/files/92b2c8e9-062c-4f10-8e12-ce7e4015bcd0_1688_image_share_e08243ce8e5abab0324d4e757db01c6b(1).jpg?auth_key=1864593401-7e917c957ff04e5f820284ec5206a0c3-0-5af99bd87a0d6f4c59405ff0f11fce22"
+            },
+            4: {
+                title: "Azure Mystique",
+                price: "$1,599",
+                description: "Enchanting blue gemstones in sterling silver create an ethereal combination. Evokes twilight skies for evening elegance. Each blue sapphire is carefully selected for its exceptional color and clarity.",
+                image: "https://z-cdn-media.chatglm.cn/files/7b541b9a-7561-4f57-8a3b-802aea311a07_1688_image_share_eb7b4ed65459bd6ac0df3082b8a1e24e.jpg?auth_key=1864593401-39a07cf36b5f4161812bc154927ce923-0-66091bca29752ed8d1cf19ddf6f89810"
+            },
+            5: {
+                title: "Golden Radiance",
+                price: "$1,399",
+                description: "Dazzling gold with brilliant crystals that capture and reflect light. Exudes warmth and luxury with a luminous glow. The crystals are arranged to maximize light reflection from every angle.",
+                image: "https://z-cdn-media.chatglm.cn/files/48c63669-8ea4-4c71-8f43-11168aa4a0fc_1688_image_share_f1a78823263dc932cd0b36ce3a4d4d0b.jpg?auth_key=1864593401-2e3f6b2678714d5691a3fcc9f2aa42ee-0-6d01659c40b1d72cb75bdea8bcb051fc"
+            },
+            6: {
+                title: "Crystal Brilliance",
+                price: "$1,799",
+                description: "Clear gemstones surrounded by delicate diamond accents. Creates a rainbow of reflections perfect for special occasions. This limited edition piece is numbered and comes with a certificate of authenticity.",
+                image: "https://z-cdn-media.chatglm.cn/files/70d32667-33d7-4d4b-ae2c-f4e877a650f7_1688_image_share_f4dc5beb2a76a5b556eb3f025711360f.jpg?auth_key=1864593401-a94b80eb099543d88386c3da1312f629-0-1f60cc8e663ec5a9bc2f3284a4e8f56f"
+            },
+            7: {
+                title: "Royal Amethyst",
+                price: "$1,249",
+                description: "Nature-inspired silver with delicate flower and leaf motifs adorned with regal purple amethysts. Captures mystical garden beauty. Each amethyst is hand-selected for its rich purple hue.",
+                image: "https://z-cdn-media.chatglm.cn/files/35dc8a69-6e9f-412b-950f-910b0810cae4_1759578304918(1).png?auth_key=1864593401-5a899e6f14e742fc98248af850325264-0-7a6a391dffe0340bcaccf10f4db2fe9e"
+            },
+            8: {
+                title: "Crystal Leaf",
+                price: "$1,099",
+                description: "Leaf-shaped necklace and earrings crafted from brilliant crystals. Captures autumn foliage transformed into wearable art. The crystals are precision-cut to create a realistic leaf texture.",
+                image: "https://z-cdn-media.chatglm.cn/files/c923fe2a-f35d-4f18-b9e8-99d480793fe4_IMG_20251009_194258.jpg?auth_key=1864593401-3f251c4db1694897af001aa9aeadab65-0-2457269966f4c1b2635cf9079e2994ce"
+            },
+            9: {
+                title: "Stellar Dreams",
+                price: "$1,449",
+                description: "Silver chains with precisely cut gemstones in various shapes. Captures starlit sky brilliance with dazzling display. Each gemstone is positioned to create a constellation pattern.",
+                image: "https://z-cdn-media.chatglm.cn/files/78da0c19-6a83-472e-a805-4d0949d1a5ae_IMG_20251011_190812.jpg?auth_key=1864593401-fcef9b66bae140ca992f22fb4e4ae0eb-0-7c51521bddf38c7a37c67a04ad39e737"
+            },
+            10: {
+                title: "Floral Elegance",
+                price: "$999",
+                description: "Two floral-inspired necklaces in silver and gold with intricate designs. Versatile pair celebrating nature's delicate beauty. Can be worn together or separately for different occasions.",
+                image: "https://z-cdn-media.chatglm.cn/files/5b2bc50d-d6a7-4723-a1d4-4611b477c5e0_IMG_20251012_002729.jpg?auth_key=1864593401-d646893adb8d496ab87963ce0d8dacb1-0-be2c87c8482b894354921f6b9570820a"
+            }
+        };
+        
+        // Cart and wishlist
+        let cart = [];
+        let wishlist = [];
+        
+        // Create particles for the hero section
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 2px and 8px
+                const size = Math.random() * 6 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation duration between 10s and 30s
+                const duration = Math.random() * 20 + 10;
+                particle.style.animation = `float ${duration}s infinite ease-in-out`;
+                particle.style.animationDelay = `${Math.random() * 5}s`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        // Initialize particles when page loads
+        window.addEventListener('load', createParticles);
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Filter functionality
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const productCards = document.querySelectorAll('.product-card');
+        
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Update active button
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Filter products
+                const filter = button.getAttribute('data-filter');
+                
+                productCards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Product modal functionality
+        const modal = document.getElementById('product-modal');
+        const modalClose = document.querySelector('.modal-close');
+        const modalImage = document.getElementById('modal-image');
+        const modalTitle = document.getElementById('modal-title');
+        const modalPrice = document.getElementById('modal-price');
+        const modalDescription = document.getElementById('modal-description');
+        
+        // Open modal when quick view is clicked
+        document.querySelectorAll('.quick-view').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                const product = products[productId];
+                
+                modalImage.src = product.image;
+                modalTitle.textContent = product.title;
+                modalPrice.textContent = product.price;
+                modalDescription.textContent = product.description;
+                
+                modal.style.display = 'flex';
+                
+                // Store current product ID for add to cart/wishlist buttons
+                modal.setAttribute('data-product-id', productId);
+            });
+        });
+        
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            modal.style.display = 'none';
+        });
+        
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
+        
+        // Quantity selector
+        const decreaseBtn = document.querySelector('.decrease');
+        const increaseBtn = document.querySelector('.increase');
+        const quantityInput = document.querySelector('.quantity-input');
+        
+        decreaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value > 1) {
+                quantityInput.value = value - 1;
+            }
+        });
+        
+        increaseBtn.addEventListener('click', () => {
+            let value = parseInt(quantityInput.value);
+            if (value < 10) {
+                quantityInput.value = value + 1;
+            }
+        });
+        
+        // Toast notification
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+        
+        // Add to cart functionality
+        function addToCart(productId, quantity = 1) {
+            const product = products[productId];
+            const existingItem = cart.find(item => item.id === productId);
+            
+            if (existingItem) {
+                existingItem.quantity += quantity;
+            } else {
+                cart.push({
+                    id: productId,
+                    title: product.title,
+                    price: product.price,
+                    image: product.image,
+                    quantity: quantity
+                });
+            }
+            
+            updateCartCount();
+            showToast(`${product.title} added to cart`);
+        }
+        
+        // Update cart count
+        function updateCartCount() {
+            const cartCount = document.querySelector('.cart-count');
+            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = totalItems;
+        }
+        
+        // Add to cart button clicks
+        document.querySelectorAll('.add-to-cart').forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const productId = this.getAttribute('data-product-id');
+                addToCart(productId);
+            });
+        });
+        
+        // Modal add to cart button
+        document.getElementById('modal-add-to-cart').addEventListener('click', function() {
+            const productId = modal.getAttribute('data-product-id');
+            const quantity = parseInt(quantityInput.value);
+            addToCart(productId, quantity);
+            modal.style.display = 'none';
+        });
+        
+        // Add to wishlist functionality
+        function addToWishlist(productId) {
+            const product = products[productId];
+            
+            if (!wishlist.includes(productId)) {
+                wishlist.push(productId);
+                showToast(`${product.title} added to wishlist`);
+            } else {
+                showToast(`${product.title} is already in your wishlist`);
+            }
+        }
+        
+        // Add to wishlist button clicks
+        document.querySelectorAll('.add-to-wishlist').forEach(button => {
+            button.addEventListener('click', function() {
+                const productId = this.getAttribute('data-product-id');
+                addToWishlist(productId);
+            });
+        });
+        
+        // Modal add to wishlist button
+        document.getElementById('modal-add-to-wishlist').addEventListener('click', function() {
+            const productId = modal.getAttribute('data-product-id');
+            addToWishlist(productId);
+        });
+        
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.padding = '10px 0';
+                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.padding = '15px 0';
+                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+            }
+        });
+    </script>
+</body>
+</html>
