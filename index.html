@@ -153,6 +153,98 @@
             color: var(--primary-color);
         }
         
+        .search-container {
+            position: relative;
+            margin-right: 20px;
+        }
+        
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 30px;
+            background-color: rgba(255,255,255,0.1);
+            color: var(--secondary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            width: 200px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 5px rgba(201,169,97,0.2);
+        }
+        
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            width: 300px;
+            max-height: 400px;
+            overflow-y: auto;
+            z-index: 1001;
+            display: none;
+        }
+        
+        .search-result-item {
+            padding: 10px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .search-result-item:hover {
+            background-color: rgba(201,169,97,0.1);
+        }
+        
+        .search-result-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: var(--secondary-color);
+        }
+        
+        .search-result-category {
+            font-size: 0.8rem;
+            color: var(--primary-color);
+        }
+        
+        .instagram-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s ease;
+        }
+        
+        .instagram-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201,169,97,0.3) 0%, rgba(201,169,97,0) 70%);
+            z-index: -1;
+            animation: glow 2s infinite alternate;
+        }
+        
+        @keyframes glow {
+            0% {
+                opacity: 0.3;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 0.7;
+                transform: scale(1.05);
+            }
+        }
+        
         .hero {
             height: 100vh;
             position: relative;
@@ -674,24 +766,6 @@
             line-height: 1.6;
         }
         
-        .modal-options {
-            margin-bottom: 30px;
-        }
-        
-        .option-label {
-            display: block;
-            margin-bottom: 10px;
-            font-weight: 500;
-        }
-        
-        .option-select {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            margin-bottom: 15px;
-        }
-        
         .quantity-selector {
             display: flex;
             align-items: center;
@@ -911,13 +985,18 @@
                     <li><a href="#">Home</a></li>
                     <li><a href="#collections">Collections</a></li>
                     <li><a href="#lookbook">Lookbook</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="#" id="about-btn">About</a></li>
+                    <li><a href="#" id="contact-btn">Contact</a></li>
                 </ul>
             </nav>
             <div class="header-icons">
-                <a href="#"><i class="fas fa-search"></i></a>
-                <a href="https://www.instagram.com/aster_luxury2" target="_blank"><i class="fab fa-instagram"></i></a>
+                <div class="search-container">
+                    <input type="text" class="search-input" id="search-input" placeholder="Search products...">
+                    <div class="search-results" id="search-results"></div>
+                </div>
+                <a href="https://www.instagram.com/aster_luxury2" target="_blank" class="instagram-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
             </div>
         </div>
     </header>
@@ -1002,7 +1081,9 @@
                     <h3>About Aster Luxury</h3>
                     <p>Discover our exquisite collection of handcrafted jewelry, where timeless elegance meets contemporary design.</p>
                     <div class="social-links">
-                        <a href="https://www.instagram.com/aster_luxury2" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/aster_luxury2" target="_blank" class="instagram-icon">
+                            <i class="fab fa-instagram"></i>
+                        </a>
                     </div>
                 </div>
                 
@@ -1010,7 +1091,7 @@
                     <h3>Contact Us</h3>
                     <ul>
                         <li><a href="https://wa.me/9647503307830" target="_blank">WhatsApp: +9647503307830</a></li>
-                        <li><a href="mailto:info@asterluxury.com">Email: info@asterluxury.com</a></li>
+                        <li><a href="mailto:Baravan556@gmail.com">Email: info@asterluxury.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -1032,23 +1113,6 @@
                 <div class="modal-info">
                     <h2 class="modal-title" id="modal-title"></h2>
                     <p class="modal-description" id="modal-description"></p>
-                    
-                    <div class="modal-options">
-                        <label class="option-label">Material</label>
-                        <select class="option-select">
-                            <option>18K Gold</option>
-                            <option>White Gold</option>
-                            <option>Rose Gold</option>
-                            <option>Platinum</option>
-                        </select>
-                        
-                        <label class="option-label">Size</label>
-                        <select class="option-select">
-                            <option>Small</option>
-                            <option>Medium</option>
-                            <option>Large</option>
-                        </select>
-                    </div>
                     
                     <div class="quantity-selector">
                         <button class="quantity-btn decrease">-</button>
@@ -1134,7 +1198,7 @@
             },
             11: {
                 title: "Crystal Cascade",
-                description: "Dazzling crystal necklace with multi-tiered design that creates spectacular light refraction. Each crystal is precision-cut for maximum brilliance.",
+                description: "Dazzling crystal necklace with a multi-tiered design that creates spectacular light refraction. Each crystal is precision-cut for maximum brilliance.",
                 image: "https://i.imgur.com/fxUaMQ4.jpg",
                 category: "new"
             },
@@ -1224,7 +1288,7 @@
             },
             26: {
                 title: "Vintage Glamour",
-                description: "Art deco inspired bracelet with geometric patterns. Each piece reflects the sophistication of the Roaring Twenties.",
+                description: "Art deco inspired pieces with geometric patterns. Each piece reflects the sophistication of the Roaring Twenties.",
                 image: "https://i.imgur.com/FXHd5nO.jpg",
                 category: "exclusive"
             },
@@ -1278,7 +1342,7 @@
             },
             35: {
                 title: "Garden Party",
-                description: "Floral-inspired bracelet with colorful gemstones. Perfect for spring and summer celebrations.",
+                description: "Floral-inspired pieces with colorful gemstones. Perfect for spring and summer celebrations.",
                 image: "https://i.imgur.com/nxvRYVN.jpg",
                 category: "all"
             },
@@ -1312,7 +1376,6 @@
                 image: "https://i.imgur.com/8j4QokS.jpg",
                 category: "trending"
             },
-            // Additional unique products (41-122)
             41: {
                 title: "Crystal Cascade",
                 description: "Elegant crystal necklace with cascading design elements that create a stunning visual effect.",
@@ -1542,520 +1605,635 @@
                 category: "limited"
             },
             79: {
-                title: "Pearl Perfection",
-                description: "Elegant pearl ring with a modern twist on a classic design.",
-                image: "https://i.imgur.com/Iu3vLrR.jpg",
-                category: "all"
-            },
-            80: {
-                title: "Rose Romance",
-                description: "Delicate rose gold necklace with subtle floral elements and a touch of sparkle.",
-                image: "https://i.imgur.com/LBMr3Ud.jpg",
-                category: "trending"
-            },
-            81: {
-                title: "Ocean Dreams",
-                description: "Calming aquamarine bracelet that evokes the tranquility of the sea.",
-                image: "https://i.imgur.com/zmPAg9p.jpg",
-                category: "new"
-            },
-            82: {
-                title: "Midnight Magic",
-                description: "Mysterious black diamond necklace with a design that captures the elegance of the night sky.",
-                image: "https://i.imgur.com/JrxChzU.jpg",
-                category: "exclusive"
-            },
-            83: {
-                title: "Sunset Radiance",
-                description: "Warm-toned earrings with citrine and gold that capture the beauty of a perfect sunset.",
-                image: "https://i.imgur.com/Zx98OX4.jpg",
-                category: "trending"
-            },
-            84: {
-                title: "Vintage Glamour",
-                description: "Art deco inspired bracelet with geometric patterns that reflect the sophistication of the 1920s.",
-                image: "https://i.imgur.com/BiR23Fe.jpg",
-                category: "exclusive"
-            },
-            85: {
-                title: "Crystal Sparkle",
-                description: "Dazzling crystal necklace with a design that creates spectacular light refraction.",
-                image: "https://i.imgur.com/lmtl1Nd.jpg",
-                category: "all"
-            },
-            86: {
-                title: "Golden Elegance",
-                description: "Sophisticated gold ring with a design that balances classic and contemporary elements.",
-                image: "https://i.imgur.com/hynpU1j.jpg",
-                category: "new"
-            },
-            87: {
-                title: "Silver Dreams",
-                description: "Elegant silver earrings with fluid patterns that create a sense of movement and grace.",
-                image: "https://i.imgur.com/O11HZRg.jpg",
-                category: "trending"
-            },
-            88: {
-                title: "Emerald Majesty",
-                description: "Stunning emerald bracelet with a setting that highlights the natural beauty of the stones.",
-                image: "https://i.imgur.com/mWAWjeV.jpg",
-                category: "exclusive"
-            },
-            89: {
-                title: "Diamond Luxury",
-                description: "Exquisite diamond necklace with a design that maximizes sparkle from every angle.",
-                image: "https://i.imgur.com/3tIzpKf.jpg",
-                category: "limited"
-            },
-            90: {
-                title: "Pearl Beauty",
-                description: "Elegant pearl earrings with a modern twist on a classic design.",
-                image: "https://i.imgur.com/fNN72lB.jpg",
-                category: "all"
-            },
-            91: {
-                title: "Rose Romance",
-                description: "Delicate rose gold bracelet with subtle floral elements and a touch of sparkle.",
-                image: "https://i.imgur.com/VSkfViY.jpg",
-                category: "trending"
-            },
-            92: {
-                title: "Ocean Breeze",
-                description: "Calming aquamarine ring that evokes the tranquility of the sea.",
-                image: "https://i.imgur.com/pgIeP2r.jpg",
-                category: "new"
-            },
-            93: {
-                title: "Midnight Mystery",
-                description: "Mysterious black diamond earrings with a design that captures the elegance of the night sky.",
-                image: "https://i.imgur.com/MeVvqP4.jpg",
-                category: "exclusive"
-            },
-            94: {
-                title: "Sunset Glow",
-                description: "Warm-toned necklace with citrine and gold that captures the beauty of a perfect sunset.",
-                image: "https://i.imgur.com/1fnF1hI.jpg",
-                category: "trending"
-            },
-            95: {
-                title: "Vintage Charm",
-                description: "Art deco inspired ring with geometric patterns that reflect the sophistication of the 1920s.",
-                image: "https://i.imgur.com/bzu7VJK.jpg",
-                category: "exclusive"
-            },
-            96: {
-                title: "Crystal Elegance",
-                description: "Dazzling crystal bracelet with a design that creates spectacular light refraction.",
-                image: "https://i.imgur.com/sDEvyMO.jpg",
-                category: "all"
-            },
-            97: {
-                title: "Golden Splendor",
-                description: "Sophisticated gold necklace with a design that balances classic and contemporary elements.",
-                image: "https://i.imgur.com/eUO45Yr.jpg",
-                category: "new"
-            },
-            98: {
-                title: "Silver Moonlight",
-                description: "Elegant silver ring with fluid patterns that create a sense of movement and grace.",
-                image: "https://i.imgur.com/MaRCDHi.jpg",
-                category: "trending"
-            },
-            99: {
-                title: "Emerald Enchantment",
-                description: "Stunning emerald earrings with a setting that highlights the natural beauty of the stones.",
-                image: "https://i.imgur.com/m6bzfy8.jpg",
-                category: "exclusive"
-            },
-            100: {
-                title: "Diamond Delight",
-                description: "Exquisite diamond bracelet with a design that maximizes sparkle from every angle.",
-                image: "https://i.imgur.com/4EtDd1s.jpg",
-                category: "limited"
-            },
-            101: {
-                title: "Pearl Perfection",
-                description: "Elegant pearl necklace with a modern twist on a classic design.",
-                image: "https://i.imgur.com/WVPwVOw.jpg",
-                category: "all"
-            },
-            102: {
-                title: "Rose Romance",
-                description: "Delicate rose gold ring with subtle floral elements and a touch of sparkle.",
-                image: "https://i.imgur.com/ZEAqZZD.jpg",
-                category: "trending"
-            },
-            103: {
-                title: "Ocean Dreams",
-                description: "Calming aquamarine earrings that evoke the tranquility of the sea.",
-                image: "https://i.imgur.com/wrIm2U7.jpg",
-                category: "new"
-            },
-            104: {
-                title: "Midnight Magic",
-                description: "Mysterious black diamond necklace with a design that captures the elegance of the night sky.",
-                image: "https://i.imgur.com/RR7IS1A.jpg",
-                category: "exclusive"
-            },
-            105: {
-                title: "Sunset Radiance",
-                description: "Warm-toned bracelet with citrine and gold that captures the beauty of a perfect sunset.",
-                image: "https://i.imgur.com/1s6RM6v.jpg",
-                category: "trending"
-            },
-            106: {
-                title: "Vintage Glamour",
-                description: "Art deco inspired earrings with geometric patterns that reflect the sophistication of the 1920s.",
-                image: "https://i.imgur.com/cjbjlm2.jpg",
-                category: "exclusive"
-            },
-            107: {
-                title: "Crystal Sparkle",
-                description: "Dazzling crystal ring with a design that creates spectacular light refraction.",
-                image: "https://i.imgur.com/yZrkBG2.jpg",
-                category: "all"
-            },
-            108: {
-                title: "Golden Elegance",
-                description: "Sophisticated gold necklace with a design that balances classic and contemporary elements.",
-                image: "https://i.imgur.com/kwuyyuC.jpg",
-                category: "new"
-            },
-            109: {
-                title: "Silver Dreams",
-                description: "Elegant silver bracelet with fluid patterns that create a sense of movement and grace.",
-                image: "https://i.imgur.com/bt6ljYY.jpg",
-                category: "trending"
-            },
-            110: {
-                title: "Emerald Majesty",
-                description: "Stunning emerald ring with a setting that highlights the natural beauty of the stone.",
-                image: "https://i.imgur.com/Nbj9oqI.jpg",
-                category: "exclusive"
-            },
-            111: {
-                title: "Diamond Luxury",
-                description: "Exquisite diamond earrings with a design that maximizes sparkle from every angle.",
-                image: "https://i.imgur.com/QkZY0pS.jpg",
-                category: "limited"
-            },
-            112: {
-                title: "Pearl Beauty",
-                description: "Elegant pearl bracelet with a modern twist on a classic design.",
-                image: "https://i.imgur.com/IwZRZPt.jpg",
-                category: "all"
-            },
-            113: {
-                title: "Rose Romance",
-                description: "Delicate rose gold necklace with subtle floral elements and a touch of sparkle.",
-                image: "https://i.imgur.com/YBGhJzv.jpg",
-                category: "trending"
-            },
-            114: {
-                title: "Ocean Breeze",
-                description: "Calming aquamarine ring that evokes the tranquility of the sea.",
-                image: "https://i.imgur.com/zxg9rWv.jpg",
-                category: "new"
-            },
-            115: {
-                title: "Midnight Mystery",
-                description: "Mysterious black diamond earrings with a design that captures the elegance of the night sky.",
-                image: "https://i.imgur.com/IiEB98R.jpg",
-                category: "exclusive"
-            },
-            116: {
-                title: "Sunset Glow",
-                description: "Warm-toned bracelet with citrine and gold that captures the beauty of a perfect sunset.",
-                image: "https://i.imgur.com/CLUPXAZ.jpg",
-                category: "trending"
-            },
-            117: {
-                title: "Vintage Charm",
-                description: "Art deco inspired necklace with geometric patterns that reflect the sophistication of the 1920s.",
-                image: "https://i.imgur.com/UyGhXmr.jpg",
-                category: "exclusive"
-            },
-            118: {
-                title: "Crystal Elegance",
-                description: "Dazzling crystal ring with a design that creates spectacular light refraction.",
-                image: "https://i.imgur.com/vqpl5gD.jpg",
-                category: "all"
-            },
-            119: {
-                title: "Golden Splendor",
-                description: "Sophisticated gold earrings with a design that balances classic and contemporary elements.",
-                image: "https://i.imgur.com/AvsgZDh.jpg",
-                category: "new"
-            },
-            120: {
-                title: "Silver Moonlight",
-                description: "Elegant silver bracelet with fluid patterns that create a sense of movement and grace.",
-                image: "https://i.imgur.com/viJn5QJ.jpg",
-                category: "trending"
-            },
-            121: {
-                title: "Emerald Enchantment",
-                description: "Stunning emerald necklace with a setting that highlights the natural beauty of the stone.",
-                image: "https://i.imgur.com/c2Fwe1i.jpg",
-                category: "exclusive"
-            },
-            122: {
-                title: "Diamond Delight",
-                description: "Exquisite diamond ring with a design that maximizes sparkle from every angle.",
-                image: "https://i.imgur.com/WULqW5c.jpg",
-                category: "limited"
-            }
-        };
+title: "Pearl Perfection",
+description: "Elegant pearl ring with a modern twist on a classic design.",
+image: "https://i.imgur.com/Iu3vLrR.jpg",
+category: "all"
+},
+80: {
+title: "Rose Romance",
+description: "Delicate rose gold necklace with subtle floral elements and a touch of sparkle.",
+image: "https://i.imgur.com/LBMr3Ud.jpg",
+category: "trending"
+},
+81: {
+title: "Ocean Dreams",
+description: "Calming aquamarine bracelet that evokes the tranquility of the sea.",
+image: "https://i.imgur.com/zmPAg9p.jpg",
+category: "new"
+},
+82: {
+title: "Midnight Magic",
+description: "Mysterious black diamond necklace with a design that captures the elegance of the night sky.",
+image: "https://i.imgur.com/JrxChzU.jpg",
+category: "exclusive"
+},
+83: {
+title: "Sunset Radiance",
+description: "Warm-toned earrings with citrine and gold that capture the beauty of a perfect sunset.",
+image: "https://i.imgur.com/Zx98OX4.jpg",
+category: "trending"
+},
+84: {
+title: "Vintage Glamour",
+description: "Art deco inspired bracelet with geometric patterns that reflect the sophistication of the 1920s.",
+image: "https://i.imgur.com/BiR23Fe.jpg",
+category: "exclusive"
+},
+85: {
+title: "Crystal Sparkle",
+description: "Dazzling crystal necklace with a design that creates spectacular light refraction.",
+image: "https://i.imgur.com/lmtl1Nd.jpg",
+category: "all"
+},
+86: {
+title: "Golden Elegance",
+description: "Sophisticated gold ring with a design that balances classic and contemporary elements.",
+image: "https://i.imgur.com/hynpU1j.jpg",
+category: "new"
+},
+87: {
+title: "Silver Dreams",
+description: "Elegant silver earrings with fluid patterns that create a sense of movement and grace.",
+image: "https://i.imgur.com/O11HZRg.jpg",
+category: "trending"
+},
+88: {
+title: "Emerald Majesty",
+description: "Stunning emerald bracelet with a setting that highlights the natural beauty of the stones.",
+image: "https://i.imgur.com/mWAWjeV.jpg",
+category: "exclusive"
+},
+89: {
+title: "Diamond Luxury",
+description: "Exquisite diamond necklace with a design that maximizes sparkle from every angle.",
+image: "https://i.imgur.com/3tIzpKf.jpg",
+category: "limited"
+},
+90: {
+title: "Pearl Beauty",
+description: "Elegant pearl earrings with a modern twist on a classic design.",
+image: "https://i.imgur.com/fNN72lB.jpg",
+category: "all"
+},
+91: {
+title: "Rose Romance",
+description: "Delicate rose gold bracelet with subtle floral elements and a touch of sparkle.",
+image: "https://i.imgur.com/VSkfViY.jpg",
+category: "trending"
+},
+92: {
+title: "Ocean Breeze",
+description: "Calming aquamarine ring that evokes the tranquility of the sea.",
+image: "https://i.imgur.com/pgIeP2r.jpg",
+category: "new"
+},
+93: {
+title: "Midnight Mystery",
+description: "Mysterious black diamond earrings with a design that captures the elegance of the night sky.",
+image: "https://i.imgur.com/MeVvqP4.jpg",
+category: "exclusive"
+},
+94: {
+title: "Sunset Glow",
+description: "Warm-toned necklace with citrine and gold that captures the beauty of a perfect sunset.",
+image: "https://i.imgur.com/1fnF1hI.jpg",
+category: "trending"
+},
+95: {
+title: "Vintage Charm",
+description: "Art deco inspired ring with geometric patterns that reflect the sophistication of the 1920s.",
+image: "https://i.imgur.com/bzu7VJK.jpg",
+category: "exclusive"
+},
+96: {
+title: "Crystal Elegance",
+description: "Dazzling crystal bracelet with a design that creates spectacular light refraction.",
+image: "https://i.imgur.com/sDEvyMO.jpg",
+category: "all"
+},
+97: {
+title: "Golden Splendor",
+description: "Sophisticated gold necklace with a design that balances classic and contemporary elements.",
+image: "https://i.imgur.com/eUO45Yr.jpg",
+category: "new"
+},
+98: {
+title: "Silver Moonlight",
+description: "Elegant silver ring with fluid patterns that create a sense of movement and grace.",
+image: "https://i.imgur.com/MaRCDHi.jpg",
+category: "trending"
+},
+99: {
+title: "Emerald Enchantment",
+description: "Stunning emerald earrings with a setting that highlights the natural beauty of the stones.",
+image: "https://i.imgur.com/m6bzfy8.jpg",
+category: "exclusive"
+},
+100: {
+title: "Diamond Delight",
+description: "Exquisite diamond bracelet with a design that maximizes sparkle from every angle.",
+image: "https://i.imgur.com/4EtDd1s.jpg",
+category: "limited"
+},
+101: {
+title: "Pearl Perfection",
+description: "Elegant pearl necklace with a modern twist on a classic design.",
+image: "https://i.imgur.com/WVPwVOw.jpg",
+category: "all"
+},
+102: {
+title: "Rose Romance",
+description: "Delicate rose gold ring with subtle floral elements and a touch of sparkle.",
+image: "https://i.imgur.com/ZEAqZZD.jpg",
+category: "trending"
+},
+103: {
+title: "Ocean Dreams",
+description: "Calming aquamarine earrings that evoke the tranquility of the sea.",
+image: "https://i.imgur.com/wrIm2U7.jpg",
+category: "new"
+},
+104: {
+title: "Midnight Magic",
+description: "Mysterious black diamond necklace with a design that captures the elegance of the night sky.",
+image: "https://i.imgur.com/RR7IS1A.jpg",
+category: "exclusive"
+},
+105: {
+title: "Sunset Radiance",
+description: "Warm-toned bracelet with citrine and gold that captures the beauty of a perfect sunset.",
+image: "https://i.imgur.com/1s6RM6v.jpg",
+category: "trending"
+},
+106: {
+title: "Vintage Glamour",
+description: "Art deco inspired earrings with geometric patterns that reflect the sophistication of the 1920s.",
+image: "https://i.imgur.com/cjbjlm2.jpg",
+category: "exclusive"
+},
+107: {
+title: "Crystal Sparkle",
+description: "Dazzling crystal ring with a design that creates spectacular light refraction.",
+image: "https://i.imgur.com/yZrkBG2.jpg",
+category: "all"
+},
+108: {
+title: "Golden Elegance",
+description: "Sophisticated gold necklace with a design that balances classic and contemporary elements.",
+image: "https://i.imgur.com/kwuyyuC.jpg",
+category: "new"
+},
+109: {
+title: "Silver Dreams",
+description: "Elegant silver bracelet with fluid patterns that create a sense of movement and grace.",
+image: "https://i.imgur.com/bt6ljYY.jpg",
+category: "trending"
+},
+110: {
+title: "Emerald Majesty",
+description: "Stunning emerald ring with a setting that highlights the natural beauty of the stone.",
+image: "https://i.imgur.com/Nbj9oqI.jpg",
+category: "exclusive"
+},
+111: {
+title: "Diamond Luxury",
+description: "Exquisite diamond earrings with a design that maximizes sparkle from every angle.",
+image: "https://i.imgur.com/QkZY0pS.jpg",
+category: "limited"
+},
+112: {
+title: "Pearl Beauty",
+description: "Elegant pearl bracelet with a modern twist on a classic design.",
+image: "https://i.imgur.com/IwZRZPt.jpg",
+category: "all"
+},
+113: {
+title: "Rose Romance",
+description: "Delicate rose gold necklace with subtle floral elements and a touch of sparkle.",
+image: "https://i.imgur.com/YBGhJzv.jpg",
+category: "trending"
+},
+114: {
+title: "Ocean Breeze",
+description: "Calming aquamarine ring that evokes the tranquility of the sea.",
+image: "https://i.imgur.com/zxg9rWv.jpg",
+category: "new"
+},
+115: {
+title: "Midnight Mystery",
+description: "Mysterious black diamond earrings with a design that captures the elegance of the night sky.",
+image: "https://i.imgur.com/IiEB98R.jpg",
+category: "exclusive"
+},
+116: {
+title: "Sunset Glow",
+description: "Warm-toned bracelet with citrine and gold that captures the beauty of a perfect sunset.",
+image: "https://i.imgur.com/CLUPXAZ.jpg",
+category: "trending"
+},
+117: {
+title: "Vintage Charm",
+description: "Art deco inspired necklace with geometric patterns that reflect the sophistication of the 1920s.",
+image: "https://i.imgur.com/UyGhXmr.jpg",
+category: "exclusive"
+},
+118: {
+title: "Crystal Elegance",
+description: "Dazzling crystal ring with a design that creates spectacular light refraction.",
+image: "https://i.imgur.com/vqpl5gD.jpg",
+category: "all"
+},
+119: {
+title: "Golden Splendor",
+description: "Sophisticated gold earrings with a design that balances classic and contemporary elements.",
+image: "https://i.imgur.com/AvsgZDh.jpg",
+category: "new"
+},
+120: {
+title: "Silver Moonlight",
+description: "Elegant silver bracelet with fluid patterns that create a sense of movement and grace.",
+image: "https://i.imgur.com/viJn5QJ.jpg",
+category: "trending"
+},
+121: {
+title: "Emerald Enchantment",
+description: "Stunning emerald necklace with a setting that highlights the natural beauty of the stone.",
+image: "https://i.imgur.com/c2Fwe1i.jpg",
+category: "exclusive"
+},
+122: {
+title: "Diamond Delight",
+description: "Exquisite diamond ring with a design that maximizes sparkle from every angle.",
+image: "https://i.imgur.com/WULqW5c.jpg",
+category: "limited"
+}
+};
 
-        // DOM Elements
-        const productGrid = document.getElementById('product-grid');
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const modal = document.getElementById('product-modal');
-        const modalClose = document.querySelector('.modal-close');
-        const modalImage = document.getElementById('modal-image');
-        const modalTitle = document.getElementById('modal-title');
-        const modalDescription = document.getElementById('modal-description');
-        const modalOrderBtn = document.getElementById('modal-order-whatsapp');
-        const quantityInput = document.querySelector('.quantity-input');
-        const decreaseBtn = document.querySelector('.decrease');
-        const increaseBtn = document.querySelector('.increase');
-        const toast = document.getElementById('toast');
+// DOM Elements
+const productGrid = document.getElementById('product-grid');
+const filterButtons = document.querySelectorAll('.filter-btn');
+const modal = document.getElementById('product-modal');
+const modalClose = document.querySelector('.modal-close');
+const modalImage = document.getElementById('modal-image');
+const modalTitle = document.getElementById('modal-title');
+const modalDescription = document.getElementById('modal-description');
+const modalOrderBtn = document.getElementById('modal-order-whatsapp');
+const quantityInput = document.querySelector('.quantity-input');
+const decreaseBtn = document.querySelector('.decrease');
+const increaseBtn = document.querySelector('.increase');
+const toast = document.getElementById('toast');
+const searchInput = document.getElementById('search-input');
+const searchResults = document.getElementById('search-results');
+const aboutBtn = document.getElementById('about-btn');
+const contactBtn = document.getElementById('contact-btn');
 
-        // Initialize products on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            renderProducts('all');
-            
-            // Create floating particles
-            createParticles();
-        });
+// Initialize products on page load
+document.addEventListener('DOMContentLoaded', () => {
+renderProducts('all');
 
-        // Create floating particles for hero section
-        function createParticles() {
-            const particlesContainer = document.getElementById('particles');
-            const particleCount = 50;
-            
-            for (let i = 0; i < particleCount; i++) {
-                const particle = document.createElement('div');
-                particle.classList.add('particle');
-                
-                // Random size between 2px and 8px
-                const size = Math.random() * 6 + 2;
-                particle.style.width = `${size}px`;
-                particle.style.height = `${size}px`;
-                
-                // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
-                
-                // Random opacity
-                particle.style.opacity = Math.random() * 0.5 + 0.1;
-                
-                // Random animation duration
-                const duration = Math.random() * 20 + 10;
-                particle.style.animation = `float ${duration}s infinite ease-in-out`;
-                
-                particlesContainer.appendChild(particle);
-            }
-        }
+// Create floating particles
+createParticles();
 
-        // Render products based on filter
-        function renderProducts(filter) {
-            productGrid.innerHTML = '';
-            
-            Object.keys(products).forEach(id => {
-                const product = products[id];
-                
-                if (filter === 'all' || product.category === filter) {
-                    const productCard = document.createElement('div');
-                    productCard.classList.add('product-card');
-                    
-                    // Create badge for special categories
-                    let badge = '';
-                    if (product.category === 'new') {
-                        badge = '<div class="product-badge">New</div>';
-                    } else if (product.category === 'limited') {
-                        badge = '<div class="product-badge">Limited</div>';
-                    } else if (product.category === 'exclusive') {
-                        badge = '<div class="product-badge">Exclusive</div>';
-                    } else if (product.category === 'trending') {
-                        badge = '<div class="product-badge">Trending</div>';
-                    }
-                    
-                    productCard.innerHTML = `
-                        ${badge}
-                        <div class="product-image">
-                            <img src="${product.image}" alt="${product.title}">
-                            <div class="product-actions">
-                                <div class="action-btn quick-view" data-id="${id}">
-                                    <i class="fas fa-eye"></i>
-                                </div>
-                                <div class="action-btn add-to-wishlist">
-                                    <i class="far fa-heart"></i>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="product-info">
-                            <h3 class="product-title">${product.title}</h3>
-                            <p class="product-description">${product.description}</p>
-                            <button class="whatsapp-btn order-whatsapp" data-id="${id}">
-                                <i class="fab fa-whatsapp"></i> Order via WhatsApp
-                            </button>
-                        </div>
-                    `;
-                    
-                    productGrid.appendChild(productCard);
-                }
-            });
-            
-            // Add event listeners to new elements
-            addProductEventListeners();
-        }
+// Setup search functionality
+setupSearch();
 
-        // Add event listeners to product elements
-        function addProductEventListeners() {
-            // Quick view buttons
-            document.querySelectorAll('.quick-view').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-id');
-                    openProductModal(productId);
-                });
-            });
-            
-            // Order via WhatsApp buttons
-            document.querySelectorAll('.order-whatsapp').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const productId = this.getAttribute('data-id');
-                    const product = products[productId];
-                    orderViaWhatsApp(product.title);
-                });
-            });
-            
-            // Add to wishlist buttons
-            document.querySelectorAll('.add-to-wishlist').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    this.classList.toggle('active');
-                    const icon = this.querySelector('i');
-                    if (icon.classList.contains('far')) {
-                        icon.classList.remove('far');
-                        icon.classList.add('fas');
-                        showToast('Added to wishlist');
-                    } else {
-                        icon.classList.remove('fas');
-                        icon.classList.add('far');
-                        showToast('Removed from wishlist');
-                    }
-                });
-            });
-        }
+// Setup About button
+setupAboutButton();
 
-        // Filter products
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Update active button
-                filterButtons.forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                
-                // Filter products
-                const filter = this.getAttribute('data-filter');
-                renderProducts(filter);
-            });
-        });
+// Setup Contact button
+setupContactButton();
+});
 
-        // Open product modal
-        function openProductModal(productId) {
-            const product = products[productId];
-            
-            modalImage.src = product.image;
-            modalTitle.textContent = product.title;
-            modalDescription.textContent = product.description;
-            
-            // Reset quantity
-            quantityInput.value = 1;
-            
-            // Set up WhatsApp order button
-            modalOrderBtn.setAttribute('data-title', product.title);
-            
-            modal.style.display = 'flex';
-            document.body.style.overflow = 'hidden';
-        }
+// Create floating particles for hero section
+function createParticles() {
+const particlesContainer = document.getElementById('particles');
+const particleCount = 50;
 
-        // Close modal
-        modalClose.addEventListener('click', () => {
-            modal.style.display = 'none';
-            document.body.style.overflow = 'auto';
-        });
+for (let i = 0; i < particleCount; i++) {
+const particle = document.createElement('div');
+particle.classList.add('particle');
 
-        // Close modal when clicking outside
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-                document.body.style.overflow = 'auto';
-            }
-        });
+// Random size between 2px and 8px
+const size = Math.random() * 6 + 2;
+particle.style.width = `${size}px`;
+particle.style.height = `${size}px`;
 
-        // Quantity selector
-        decreaseBtn.addEventListener('click', () => {
-            if (quantityInput.value > 1) {
-                quantityInput.value = parseInt(quantityInput.value) - 1;
-            }
-        });
+// Random position
+particle.style.left = `${Math.random() * 100}%`;
+particle.style.top = `${Math.random() * 100}%`;
 
-        increaseBtn.addEventListener('click', () => {
-            if (quantityInput.value < 10) {
-                quantityInput.value = parseInt(quantityInput.value) + 1;
-            }
-        });
+// Random opacity
+particle.style.opacity = Math.random() * 0.5 + 0.1;
 
-        // Order via WhatsApp function
-        function orderViaWhatsApp(productTitle) {
-            const phoneNumber = '9647503307830'; // Your WhatsApp number
-            const message = encodeURIComponent(`I'm interested in: ${productTitle}`);
-            const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
-            
-            window.open(whatsappUrl, '_blank');
-        }
+// Random animation duration
+const duration = Math.random() * 20 + 10;
+particle.style.animation = `float ${duration}s infinite ease-in-out`;
 
-        // Modal WhatsApp order button
-        modalOrderBtn.addEventListener('click', () => {
-            const productTitle = modalOrderBtn.getAttribute('data-title');
-            orderViaWhatsApp(productTitle);
-        });
+particlesContainer.appendChild(particle);
+}
+}
 
-        // Show toast notification
-        function showToast(message) {
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
+// Setup search functionality
+function setupSearch() {
+searchInput.addEventListener('input', function() {
+const searchTerm = this.value.toLowerCase().trim();
 
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    window.scrollTo({
-                        top: target.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
+if (searchTerm.length > 0) {
+searchResults.innerHTML = '';
+searchResults.style.display = 'block';
 
-        // Header scroll effect
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 100) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '15px 0';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
-            }
-        });
-    </script>
-</body>
+// Find matching products
+const matchingProducts = [];
+
+Object.keys(products).forEach(id => {
+const product = products[id];
+if (product.title.toLowerCase().includes(searchTerm)) {
+matchingProducts.push(product);
+}
+});
+
+if (matchingProducts.length > 0) {
+matchingProducts.forEach(product => {
+const resultItem = document.createElement('div');
+resultItem.classList.add('search-result-item');
+resultItem.innerHTML = `
+<div class="search-result-title">${product.title}</div>
+<div class="search-result-category">${product.category.charAt(0).toUpperCase() + product.category.slice(1)}</div>
+`;
+
+resultItem.addEventListener('click', function() {
+searchResults.style.display = 'none';
+searchInput.value = '';
+openProductModal(Object.keys(products).find(key => products[key] === product));
+});
+
+searchResults.appendChild(resultItem);
+});
+} else {
+const noResults = document.createElement('div');
+noResults.classList.add('search-result-item');
+noResults.innerHTML = '<div class="search-result-title">No products found</div>';
+searchResults.appendChild(noResults);
+}
+} else {
+searchResults.style.display = 'none';
+}
+});
+
+// Close search results when clicking outside
+document.addEventListener('click', function(e) {
+if (!searchResults.contains(e.target) && e.target !== searchInput) {
+searchResults.style.display = 'none';
+}
+});
+}
+
+// Setup About button to show contact info
+function setupAboutButton() {
+aboutBtn.addEventListener('click', function(e) {
+e.preventDefault();
+
+// Create a modal or overlay for contact info
+const aboutModal = document.createElement('div');
+aboutModal.style.position = 'fixed';
+aboutModal.style.top = '0';
+aboutModal.style.left = '0';
+aboutModal.style.width = '100%';
+aboutModal.style.height = '100%';
+aboutModal.style.backgroundColor = 'rgba(0,0,0,0.8)';
+aboutModal.style.zIndex = '2000';
+aboutModal.style.display = 'flex';
+aboutModal.style.alignItems = 'center';
+aboutModal.style.justifyContent = 'center';
+aboutModal.style.flexDirection = 'column';
+
+aboutModal.innerHTML = `
+<div style="background-color: white; padding: 40px; border-radius: 8px; max-width: 600px; width: 90%; margin: 0 auto; position: relative;">
+<button style="position: absolute; top: 20px; right: 20px; background: none; border: none; font-size: 24px; cursor: pointer; color: var(--secondary-color);" id="close-about">&times;</button>
+<h2 style="color: var(--primary-color); margin-bottom: 20px; font-family: 'Playfair Display', serif;">About Aster Luxury</h2>
+<p style="margin-bottom: 20px; line-height: 1.6;">Discover our exquisite collection of handcrafted jewelry, where timeless elegance meets contemporary design. Each piece is meticulously crafted with attention to detail and the finest materials, creating treasures that will be cherished for generations.</p>
+<div style="display: flex; flex-direction: column; gap: 15px;">
+<div style="display: flex; align-items: center;">
+<i class="fab fa-whatsapp" style="color: #25D366; font-size: 20px; margin-right: 10px;"></i>
+<span>WhatsApp: +9647503307830</span>
+</div>
+<div style="display: flex; align-items: center;">
+<i class="fas fa-envelope" style="color: var(--primary-color); font-size: 20px; margin-right: 10px;"></i>
+<span>Email: info@asterluxury.com</span>
+</div>
+<div style="display: flex; align-items: center;">
+<i class="fab fa-instagram" style="color: #E1306C; font-size: 20px; margin-right: 10px;"></i>
+<span>Instagram: @aster_luxury2</span>
+</div>
+</div>
+</div>
+`;
+
+document.body.appendChild(aboutModal);
+
+// Close modal when clicking on close button
+document.getElementById('close-about').addEventListener('click', function() {
+document.body.removeChild(aboutModal);
+});
+});
+}
+
+// Setup Contact button to open WhatsApp
+function setupContactButton() {
+contactBtn.addEventListener('click', function(e) {
+e.preventDefault();
+const phoneNumber = '9647503307830';
+const message = encodeURIComponent('Hello, I would like to inquire about your products.');
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+window.open(whatsappUrl, '_blank');
+});
+}
+
+// Render products based on filter
+function renderProducts(filter) {
+productGrid.innerHTML = '';
+
+Object.keys(products).forEach(id => {
+const product = products[id];
+
+if (filter === 'all' || product.category === filter) {
+const productCard = document.createElement('div');
+productCard.classList.add('product-card');
+
+// Create badge for special categories
+let badge = '';
+if (product.category === 'new') {
+badge = '<div class="product-badge">New</div>';
+} else if (product.category === 'limited') {
+badge = '<div class="product-badge">Limited</div>';
+} else if (product.category === 'exclusive') {
+badge = '<div class="product-badge">Exclusive</div>';
+} else if (product.category === 'trending') {
+badge = '<div class="product-badge">Trending</div>';
+}
+
+productCard.innerHTML = `
+${badge}
+<div class="product-image">
+<img src="${product.image}" alt="${product.title}">
+<div class="product-actions">
+<div class="action-btn quick-view" data-id="${id}">
+<i class="fas fa-eye"></i>
+</div>
+<div class="action-btn add-to-wishlist">
+<i class="far fa-heart"></i>
+</div>
+</div>
+</div>
+<div class="product-info">
+<h3 class="product-title">${product.title}</h3>
+<p class="product-description">${product.description}</p>
+<button class="whatsapp-btn order-whatsapp" data-id="${id}">
+<i class="fab fa-whatsapp"></i> Order via WhatsApp
+</button>
+</div>
+`;
+
+productGrid.appendChild(productCard);
+}
+});
+
+// Add event listeners to new elements
+addProductEventListeners();
+}
+
+// Add event listeners to product elements
+function addProductEventListeners() {
+// Quick view buttons
+document.querySelectorAll('.quick-view').forEach(btn => {
+btn.addEventListener('click', function() {
+const productId = this.getAttribute('data-id');
+openProductModal(productId);
+});
+});
+
+// Order via WhatsApp buttons
+document.querySelectorAll('.order-whatsapp').forEach(btn => {
+btn.addEventListener('click', function() {
+const productId = this.getAttribute('data-id');
+const product = products[productId];
+orderViaWhatsApp(product.title);
+});
+});
+
+// Add to wishlist buttons
+document.querySelectorAll('.add-to-wishlist').forEach(btn => {
+btn.addEventListener('click', function() {
+this.classList.toggle('active');
+const icon = this.querySelector('i');
+if (icon.classList.contains('far')) {
+icon.classList.remove('far');
+icon.classList.add('fas');
+showToast('Added to wishlist');
+} else {
+icon.classList.remove('fas');
+icon.classList.add('far');
+showToast('Removed from wishlist');
+}
+});
+});
+}
+
+// Open product modal
+function openProductModal(productId) {
+const product = products[productId];
+
+modalImage.src = product.image;
+modalTitle.textContent = product.title;
+modalDescription.textContent = product.description;
+
+// Reset quantity
+quantityInput.value = 1;
+
+// Set up WhatsApp order button
+modalOrderBtn.setAttribute('data-title', product.title);
+
+modal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+}
+
+// Close modal
+modalClose.addEventListener('click', () => {
+modal.style.display = 'none';
+document.body.style.overflow = 'auto';
+});
+
+// Close modal when clicking outside
+window.addEventListener('click', (e) => {
+if (e.target === modal) {
+modal.style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+});
+
+// Quantity selector
+decreaseBtn.addEventListener('click', () => {
+if (quantityInput.value > 1) {
+quantityInput.value = parseInt(quantityInput.value) - 1;
+}
+});
+
+increaseBtn.addEventListener('click', () => {
+if (quantityInput.value < 10) {
+quantityInput.value = parseInt(quantityInput.value) + 1;
+}
+});
+
+// Order via WhatsApp function
+function orderViaWhatsApp(productTitle) {
+const phoneNumber = '9647503307830';
+const message = encodeURIComponent(`I'm interested in: ${productTitle}`);
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+window.open(whatsappUrl, '_blank');
+}
+
+// Modal WhatsApp order button
+modalOrderBtn.addEventListener('click', () => {
+const productTitle = modalOrderBtn.getAttribute('data-title');
+orderViaWhatsApp(productTitle);
+});
+
+// Show toast notification
+function showToast(message) {
+toast.textContent = message;
+toast.classList.add('show');
+
+setTimeout(() => {
+toast.classList.remove('show');
+}, 3000);
+}
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function (e) {
+e.preventDefault();
+const target = document.querySelector(this.getAttribute('href'));
+if (target) {
+window.scrollTo({
+top: target.offsetTop - 80,
+behavior: 'smooth'
+});
+}
+});
+});
+
+// Header scroll effect
+window.addEventListener('scroll', () => {
+const header = document.querySelector('header');
+if (window.scrollY > 100) {
+header.style.padding = '10px 0';
+header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+} else {
+header.style.padding = '15px 0';
+header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+}
+});
+</script></body>
 </html>
