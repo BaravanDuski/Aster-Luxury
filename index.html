@@ -37,6 +37,190 @@
             padding: 0 20px;
         }
         
+        /* Loading Screen with Diamond Animation */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--luxury-dark), #333);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        
+        .loading-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            letter-spacing: 2px;
+            margin-bottom: 30px;
+            opacity: 0;
+            animation: fadeInScale 1s ease-out forwards;
+        }
+        
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        
+        .diamond-container {
+            width: 200px;
+            height: 200px;
+            position: relative;
+            margin-bottom: 30px;
+            perspective: 1000px;
+            opacity: 0;
+            animation: fadeInScale 1s ease-out 0.5s forwards;
+        }
+        
+        .diamond {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotateDiamond 4s infinite linear, levitate 3s infinite ease-in-out;
+        }
+        
+        @keyframes rotateDiamond {
+            0% {
+                transform: rotateY(0deg) rotateX(0deg);
+            }
+            100% {
+                transform: rotateY(360deg) rotateX(360deg);
+            }
+        }
+        
+        @keyframes levitate {
+            0%, 100% {
+                transform: translateY(0) rotateY(0deg) rotateX(0deg);
+            }
+            50% {
+                transform: translateY(-20px) rotateY(180deg) rotateX(180deg);
+            }
+        }
+        
+        .diamond-face {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--primary-color), #f0d890, var(--primary-color));
+            clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);
+            opacity: 0.8;
+        }
+        
+        .diamond-face:nth-child(1) {
+            transform: rotateY(0deg) translateZ(50px);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.9), rgba(240, 216, 144, 0.9), rgba(201, 169, 97, 0.9));
+        }
+        
+        .diamond-face:nth-child(2) {
+            transform: rotateY(72deg) translateZ(50px);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.8), rgba(240, 216, 144, 0.8), rgba(201, 169, 97, 0.8));
+        }
+        
+        .diamond-face:nth-child(3) {
+            transform: rotateY(144deg) translateZ(50px);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.7), rgba(240, 216, 144, 0.7), rgba(201, 169, 97, 0.7));
+        }
+        
+        .diamond-face:nth-child(4) {
+            transform: rotateY(216deg) translateZ(50px);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.8), rgba(240, 216, 144, 0.8), rgba(201, 169, 97, 0.8));
+        }
+        
+        .diamond-face:nth-child(5) {
+            transform: rotateY(288deg) translateZ(50px);
+            background: linear-gradient(135deg, rgba(201, 169, 97, 0.9), rgba(240, 216, 144, 0.9), rgba(201, 169, 97, 0.9));
+        }
+        
+        .diamond-shine {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+            animation: shine 3s infinite;
+        }
+        
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+        
+        .loading-text {
+            color: #fff;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+        
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+        
+        .loading-progress {
+            width: 200px;
+            height: 3px;
+            background-color: rgba(255, 255, 255, 0.1);
+            margin-top: 20px;
+            opacity: 0;
+            animation: fadeIn 1s ease-out 1.5s forwards;
+        }
+        
+        .loading-progress-bar {
+            height: 100%;
+            width: 0;
+            background: var(--gold-gradient);
+            animation: loadingProgress 2s ease-out 1.5s forwards;
+        }
+        
+        @keyframes loadingProgress {
+            0% {
+                width: 0;
+            }
+            100% {
+                width: 100%;
+            }
+        }
+        
+        .loading-screen.hide {
+            animation: fadeOut 0.5s ease-out 2.5s forwards;
+        }
+        
+        @keyframes fadeOut {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
+        
         header {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 15px 0;
@@ -136,21 +320,6 @@
         
         .header-icons a:hover {
             color: var(--primary-color);
-        }
-        
-        .cart-count {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background-color: var(--primary-color);
-            color: white;
-            font-size: 0.7rem;
-            width: 18px;
-            height: 18px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
         
         .hero {
@@ -448,6 +617,33 @@
             color: #fff;
         }
         
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #25D366;
+            color: white;
+            padding: 8px 20px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 500;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .whatsapp-btn i {
+            margin-right: 8px;
+        }
+        
+        .whatsapp-btn:hover {
+            background-color: #128C7E;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+        }
+        
         .lookbook {
             padding: 80px 0;
             background-color: #fff;
@@ -701,16 +897,17 @@
             transition: all 0.3s;
         }
         
-        .add-to-cart {
-            background: var(--gold-gradient);
+        .order-whatsapp {
+            background: #25D366;
             color: white;
             border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
         
-        .add-to-wishlist {
-            background-color: transparent;
-            color: var(--primary-color);
-            border: 1px solid var(--primary-color);
+        .order-whatsapp i {
+            margin-right: 8px;
         }
         
         .modal-btn:hover {
@@ -849,6 +1046,25 @@
     </style>
 </head>
 <body>
+    <!-- Loading Screen with Diamond Animation -->
+    <div class="loading-screen" id="loading-screen">
+        <div class="diamond-container">
+            <div class="diamond">
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-face"></div>
+                <div class="diamond-shine"></div>
+            </div>
+        </div>
+        <h1 class="loading-logo">Aster Luxury</h1>
+        <p class="loading-text">Crafting Elegance, Defining Luxury</p>
+        <div class="loading-progress">
+            <div class="loading-progress-bar"></div>
+        </div>
+    </div>
+    
     <header>
         <div class="container header-content">
             <a href="#" class="logo">Aster Luxury</a>
@@ -863,11 +1079,7 @@
             </nav>
             <div class="header-icons">
                 <a href="#"><i class="fas fa-search"></i></a>
-                <a href="#"><i class="far fa-heart"></i></a>
-                <a href="#">
-                    <i class="fas fa-shopping-bag"></i>
-                    <span class="cart-count">0</span>
-                </a>
+                <a href="https://www.instagram.com/aster_luxury2" target="_blank"><i class="fab fa-instagram"></i></a>
             </div>
         </div>
     </header>
@@ -902,222 +1114,8 @@
                 <button class="filter-btn" data-filter="limited">Limited Edition</button>
             </div>
             
-            <div class="product-grid">
-                <!-- Product 1 -->
-                <div class="product-card" data-category="new">
-                    <div class="product-badge">NEW</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/41bb6918-eb0c-492a-bce7-64f832484d6c_1688_image_share_e49e3b26ca2b4ed4a72b2eb7958cd2a3.jpg?auth_key=1864593401-177dae8d027943a7bc5969f4097db792-0-333dead413de166fc47b156300c88ac3" alt="Diamond Elegance Set">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="1">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="1">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Diamond Elegance</h3>
-                        <p class="product-description">Exquisite diamond necklace and earrings with delicate black feather accents. Captures sophistication and glamour for special occasions.</p>
-                        <div class="product-price">$1,299</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="1">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 2 -->
-                <div class="product-card" data-category="trending">
-                    <div class="product-badge">TRENDING</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/943bd0bd-769f-45b4-a482-70d665f3849c_1688_image_share_e52dac51e491cc0a448f25b385e721eb.jpg?auth_key=1864593401-6430bf1c3a254203b872ca9aa7ad8e54-0-0b71e3e8eb7a4d194890cb578bb9f188" alt="Jade Harmony Collection">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="2">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="2">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Jade Harmony</h3>
-                        <p class="product-description">Golden chains with serene green jade rings and delicate beadwork. Symbolizes harmony between tradition and contemporary style.</p>
-                        <div class="product-price">$899</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="2">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 3 -->
-                <div class="product-card" data-category="all">
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/92b2c8e9-062c-4f10-8e12-ce7e4015bcd0_1688_image_share_e08243ce8e5abab0324d4e757db01c6b(1).jpg?auth_key=1864593401-7e917c957ff04e5f820284ec5206a0c3-0-5af99bd87a0d6f4c59405ff0f11fce22" alt="Golden Spiral Dreams">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="3">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="3">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Golden Spiral</h3>
-                        <p class="product-description">Mesmerizing golden spiral necklace and earrings embodying eternal flow. A perfect statement piece for artistic expression.</p>
-                        <div class="product-price">$1,149</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="3">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 4 -->
-                <div class="product-card" data-category="exclusive">
-                    <div class="product-badge">EXCLUSIVE</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/7b541b9a-7561-4f57-8a3b-802aea311a07_1688_image_share_eb7b4ed65459bd6ac0df3082b8a1e24e.jpg?auth_key=1864593401-39a07cf36b5f4161812bc154927ce923-0-66091bca29752ed8d1cf19ddf6f89810" alt="Azure Mystique Set">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="4">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="4">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Azure Mystique</h3>
-                        <p class="product-description">Enchanting blue gemstones in sterling silver create an ethereal combination. Evokes twilight skies for evening elegance.</p>
-                        <div class="product-price">$1,599</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="4">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 5 -->
-                <div class="product-card" data-category="all">
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/48c63669-8ea4-4c71-8f43-11168aa4a0fc_1688_image_share_f1a78823263dc932cd0b36ce3a4d4d0b.jpg?auth_key=1864593401-2e3f6b2678714d5691a3fcc9f2aa42ee-0-6d01659c40b1d72cb75bdea8bcb051fc" alt="Golden Radiance Collection">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="5">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="5">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Golden Radiance</h3>
-                        <p class="product-description">Dazzling gold with brilliant crystals that capture and reflect light. Exudes warmth and luxury with a luminous glow.</p>
-                        <div class="product-price">$1,399</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="5">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 6 -->
-                <div class="product-card" data-category="limited">
-                    <div class="product-badge">LIMITED</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/70d32667-33d7-4d4b-ae2c-f4e877a650f7_1688_image_share_f4dc5beb2a76a5b556eb3f025711360f.jpg?auth_key=1864593401-a94b80eb099543d88386c3da1312f629-0-1f60cc8e663ec5a9bc2f3284a4e8f56f" alt="Crystal Brilliance Set">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="6">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="6">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Crystal Brilliance</h3>
-                        <p class="product-description">Clear gemstones surrounded by delicate diamond accents. Creates a rainbow of reflections perfect for special occasions.</p>
-                        <div class="product-price">$1,799</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="6">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 7 -->
-                <div class="product-card" data-category="all">
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/35dc8a69-6e9f-412b-950f-910b0810cae4_1759578304918(1).png?auth_key=1864593401-5a899e6f14e742fc98248af850325264-0-7a6a391dffe0340bcaccf10f4db2fe9e" alt="Royal Amethyst Garden">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="7">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="7">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Royal Amethyst</h3>
-                        <p class="product-description">Nature-inspired silver with delicate flower and leaf motifs adorned with regal purple amethysts. Captures mystical garden beauty.</p>
-                        <div class="product-price">$1,249</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="7">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 8 -->
-                <div class="product-card" data-category="trending">
-                    <div class="product-badge">BESTSELLER</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/c923fe2a-f35d-4f18-b9e8-99d480793fe4_IMG_20251009_194258.jpg?auth_key=1864593401-3f251c4db1694897af001aa9aeadab65-0-2457269966f4c1b2635cf9079e2994ce" alt="Crystal Leaf Symphony">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="8">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="8">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Crystal Leaf</h3>
-                        <p class="product-description">Leaf-shaped necklace and earrings crafted from brilliant crystals. Captures autumn foliage transformed into wearable art.</p>
-                        <div class="product-price">$1,099</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="8">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 9 -->
-                <div class="product-card" data-category="all">
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/78da0c19-6a83-472e-a805-4d0949d1a5ae_IMG_20251011_190812.jpg?auth_key=1864593401-fcef9b66bae140ca992f22fb4e4ae0eb-0-7c51521bddf38c7a37c67a04ad39e737" alt="Stellar Dreams Collection">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="9">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="9">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Stellar Dreams</h3>
-                        <p class="product-description">Silver chains with precisely cut gemstones in various shapes. Captures starlit sky brilliance with dazzling display.</p>
-                        <div class="product-price">$1,449</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="9">Add to Cart</a>
-                    </div>
-                </div>
-                
-                <!-- Product 10 -->
-                <div class="product-card" data-category="new">
-                    <div class="product-badge">NEW ARRIVAL</div>
-                    <div class="product-image">
-                        <img src="https://z-cdn-media.chatglm.cn/files/5b2bc50d-d6a7-4723-a1d4-4611b477c5e0_IMG_20251012_002729.jpg?auth_key=1864593401-d646893adb8d496ab87963ce0d8dacb1-0-be2c87c8482b894354921f6b9570820a" alt="Floral Elegance Duo">
-                        <div class="product-actions">
-                            <div class="action-btn quick-view" data-product-id="10">
-                                <i class="fas fa-eye"></i>
-                            </div>
-                            <div class="action-btn add-to-wishlist" data-product-id="10">
-                                <i class="far fa-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="product-info">
-                        <h3 class="product-title">Floral Elegance</h3>
-                        <p class="product-description">Two floral-inspired necklaces in silver and gold with intricate designs. Versatile pair celebrating nature's delicate beauty.</p>
-                        <div class="product-price">$999</div>
-                        <a href="#" class="product-btn add-to-cart" data-product-id="10">Add to Cart</a>
-                    </div>
-                </div>
+            <div class="product-grid" id="product-grid">
+                <!-- Products will be dynamically loaded here -->
             </div>
         </div>
     </section>
@@ -1127,21 +1125,21 @@
             <h2 class="section-title">Luxury Lookbook</h2>
             <div class="lookbook-grid">
                 <div class="lookbook-item">
-                    <img src="https://picsum.photos/seed/luxury1/600/400.jpg" alt="Luxury Collection 1">
+                    <img src="https://imgur.com/OErot48" alt="Luxury Collection 1">
                     <div class="lookbook-overlay">
                         <h3>Summer Elegance</h3>
                         <p>Discover our latest summer collection inspired by Mediterranean beauty</p>
                     </div>
                 </div>
                 <div class="lookbook-item">
-                    <img src="https://picsum.photos/seed/luxury2/600/400.jpg" alt="Luxury Collection 2">
+                    <img src="https://imgur.com/z00Aaai" alt="Luxury Collection 2">
                     <div class="lookbook-overlay">
                         <h3>Evening Glamour</h3>
                         <p>Stunning pieces for your most special occasions</p>
                     </div>
                 </div>
                 <div class="lookbook-item">
-                    <img src="https://picsum.photos/seed/luxury3/600/400.jpg" alt="Luxury Collection 3">
+                    <img src="https://imgur.com/JjaaugF" alt="Luxury Collection 3">
                     <div class="lookbook-overlay">
                         <h3>Timeless Classics</h3>
                         <p>Enduring designs that transcend seasons and trends</p>
@@ -1159,29 +1157,14 @@
                     <p>Discover our exquisite collection of handcrafted jewelry, where timeless elegance meets contemporary design.</p>
                     <div class="social-links">
                         <a href="https://www.instagram.com/aster_luxury2" target="_blank"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 
                 <div class="footer-column">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="#">New Arrivals</a></li>
-                        <li><a href="#">Best Sellers</a></li>
-                        <li><a href="#">Collections</a></li>
-                        <li><a href="#">Gift Cards</a></li>
-                    </ul>
-                </div>
-                
-                <div class="footer-column">
-                    <h3>Customer Service</h3>
+                    <h3>Contact Us</h3>
                     <ul>
                         <li><a href="https://wa.me/9647503307830" target="_blank">WhatsApp: +9647503307830</a></li>
-                        <li><a href="#">Shipping & Returns</a></li>
-                        <li><a href="#">Size Guide</a></li>
-                        <li><a href="#">Jewelry Care</a></li>
+                        <li><a href="mailto:info@asterluxury.com">Email: info@asterluxury.com</a></li>
                     </ul>
                 </div>
             </div>
@@ -1229,8 +1212,9 @@
                     </div>
                     
                     <div class="modal-actions">
-                        <button class="modal-btn add-to-cart" id="modal-add-to-cart">Add to Cart</button>
-                        <button class="modal-btn add-to-wishlist" id="modal-add-to-wishlist">Add to Wishlist</button>
+                        <button class="modal-btn order-whatsapp" id="modal-order-whatsapp">
+                            <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                        </button>
                     </div>
                 </div>
             </div>
@@ -1241,76 +1225,458 @@
     <div id="toast" class="toast"></div>
     
     <script>
-        // Product data
+        // Product data with all 40 products
         const products = {
             1: {
-                title: "Diamond Elegance",
-                price: "$1,299",
-                description: "Exquisite diamond necklace and earrings with delicate black feather accents. Captures sophistication and glamour for special occasions. Crafted with precision using ethically sourced diamonds and 18K white gold.",
-                image: "https://z-cdn-media.chatglm.cn/files/41bb6918-eb0c-492a-bce7-64f832484d6c_1688_image_share_e49e3b26ca2b4ed4a72b2eb7958cd2a3.jpg?auth_key=1864593401-177dae8d027943a7bc5969f4097db792-0-333dead413de166fc47b156300c88ac3"
+                title: "Celestial Diamond",
+                price: "$2,499",
+                description: "An exquisite diamond necklace inspired by the night sky, featuring brilliant-cut diamonds arranged in a celestial pattern. Each stone is hand-selected for exceptional clarity and fire.",
+                image: "https://imgur.com/OErot48",
+                category: "exclusive"
             },
             2: {
-                title: "Jade Harmony",
-                price: "$899",
-                description: "Golden chains with serene green jade rings and delicate beadwork. Symbolizes harmony between tradition and contemporary style. Each piece is handcrafted by our master artisans.",
-                image: "https://z-cdn-media.chatglm.cn/files/943bd0bd-769f-45b4-a482-70d665f3849c_1688_image_share_e52dac51e491cc0a448f25b385e721eb.jpg?auth_key=1864593401-6430bf1c3a254203b872ca9aa7ad8e54-0-0b71e3e8eb7a4d194890cb578bb9f188"
+                title: "Royal Sapphire",
+                price: "$1,899",
+                description: "Stunning sapphire earrings set in white gold with diamond accents. The deep blue hue captures the essence of royalty and sophistication.",
+                image: "https://imgur.com/z00Aaai",
+                category: "trending"
             },
             3: {
-                title: "Golden Spiral",
-                price: "$1,149",
-                description: "Mesmerizing golden spiral necklace and earrings embodying eternal flow. A perfect statement piece for artistic expression. The spiral design represents infinity and continuous growth.",
-                image: "https://z-cdn-media.chatglm.cn/files/92b2c8e9-062c-4f10-8e12-ce7e4015bcd0_1688_image_share_e08243ce8e5abab0324d4e757db01c6b(1).jpg?auth_key=1864593401-7e917c957ff04e5f820284ec5206a0c3-0-5af99bd87a0d6f4c59405ff0f11fce22"
+                title: "Golden Cascade",
+                price: "$1,599",
+                description: "Elegant gold necklace with cascading design elements that create a fluid, graceful movement. Perfect for both formal and casual occasions.",
+                image: "https://imgur.com/JjaaugF",
+                category: "new"
             },
             4: {
-                title: "Azure Mystique",
-                price: "$1,599",
-                description: "Enchanting blue gemstones in sterling silver create an ethereal combination. Evokes twilight skies for evening elegance. Each blue sapphire is carefully selected for its exceptional color and clarity.",
-                image: "https://z-cdn-media.chatglm.cn/files/7b541b9a-7561-4f57-8a3b-802aea311a07_1688_image_share_eb7b4ed65459bd6ac0df3082b8a1e24e.jpg?auth_key=1864593401-39a07cf36b5f4161812bc154927ce923-0-66091bca29752ed8d1cf19ddf6f89810"
+                title: "Emerald Dreams",
+                price: "$2,199",
+                description: "Vibrant emerald ring surrounded by diamonds in a vintage-inspired setting. The rich green stone symbolizes renewal and prosperity.",
+                image: "https://imgur.com/Kte7nzq",
+                category: "exclusive"
             },
             5: {
-                title: "Golden Radiance",
-                price: "$1,399",
-                description: "Dazzling gold with brilliant crystals that capture and reflect light. Exudes warmth and luxury with a luminous glow. The crystals are arranged to maximize light reflection from every angle.",
-                image: "https://z-cdn-media.chatglm.cn/files/48c63669-8ea4-4c71-8f43-11168aa4a0fc_1688_image_share_f1a78823263dc932cd0b36ce3a4d4d0b.jpg?auth_key=1864593401-2e3f6b2678714d5691a3fcc9f2aa42ee-0-6d01659c40b1d72cb75bdea8bcb051fc"
+                title: "Pearl Harmony",
+                price: "$1,299",
+                description: "Classic pearl bracelet with gold accents, combining timeless elegance with modern design. Each pearl is carefully matched for size and luster.",
+                image: "https://imgur.com/PRowWfH",
+                category: "all"
             },
             6: {
-                title: "Crystal Brilliance",
-                price: "$1,799",
-                description: "Clear gemstones surrounded by delicate diamond accents. Creates a rainbow of reflections perfect for special occasions. This limited edition piece is numbered and comes with a certificate of authenticity.",
-                image: "https://z-cdn-media.chatglm.cn/files/70d32667-33d7-4d4b-ae2c-f4e877a650f7_1688_image_share_f4dc5beb2a76a5b556eb3f025711360f.jpg?auth_key=1864593401-a94b80eb099543d88386c3da1312f629-0-1f60cc8e663ec5a9bc2f3284a4e8f56f"
+                title: "Rose Garden",
+                price: "$1,749",
+                description: "Delicate rose gold necklace with floral-inspired design elements. The warm hue complements any skin tone beautifully.",
+                image: "https://imgur.com/SoydXG2",
+                category: "new"
             },
             7: {
-                title: "Royal Amethyst",
-                price: "$1,249",
-                description: "Nature-inspired silver with delicate flower and leaf motifs adorned with regal purple amethysts. Captures mystical garden beauty. Each amethyst is hand-selected for its rich purple hue.",
-                image: "https://z-cdn-media.chatglm.cn/files/35dc8a69-6e9f-412b-950f-910b0810cae4_1759578304918(1).png?auth_key=1864593401-5a899e6f14e742fc98248af850325264-0-7a6a391dffe0340bcaccf10f4db2fe9e"
+                title: "Ocean Breeze",
+                price: "$1,399",
+                description: "Aquamarine and silver earrings inspired by ocean waves. The cool blue tones evoke feelings of tranquility and serenity.",
+                image: "https://imgur.com/TlQPNKR",
+                category: "trending"
             },
             8: {
-                title: "Crystal Leaf",
-                price: "$1,099",
-                description: "Leaf-shaped necklace and earrings crafted from brilliant crystals. Captures autumn foliage transformed into wearable art. The crystals are precision-cut to create a realistic leaf texture.",
-                image: "https://z-cdn-media.chatglm.cn/files/c923fe2a-f35d-4f18-b9e8-99d480793fe4_IMG_20251009_194258.jpg?auth_key=1864593401-3f251c4db1694897af001aa9aeadab65-0-2457269966f4c1b2635cf9079e2994ce"
+                title: "Midnight Star",
+                price: "$2,799",
+                description: "Dramatic black diamond necklace with a brilliant center stone. Perfect for evening events and special occasions.",
+                image: "https://imgur.com/6sUrTib",
+                category: "limited"
             },
             9: {
-                title: "Stellar Dreams",
-                price: "$1,449",
-                description: "Silver chains with precisely cut gemstones in various shapes. Captures starlit sky brilliance with dazzling display. Each gemstone is positioned to create a constellation pattern.",
-                image: "https://z-cdn-media.chatglm.cn/files/78da0c19-6a83-472e-a805-4d0949d1a5ae_IMG_20251011_190812.jpg?auth_key=1864593401-fcef9b66bae140ca992f22fb4e4ae0eb-0-7c51521bddf38c7a37c67a04ad39e737"
+                title: "Vintage Charm",
+                price: "$1,649",
+                description: "Art deco inspired bracelet with intricate filigree work. Each detail is meticulously crafted to capture the glamour of the 1920s.",
+                image: "https://imgur.com/Eg3uzN3",
+                category: "exclusive"
             },
             10: {
+                title: "Sunset Glow",
+                price: "$1,199",
+                description: "Warm citrine and gold pieces that capture the essence of a perfect sunset. The radiant stones bring positive energy and warmth.",
+                image: "https://imgur.com/f5zWQHf",
+                category: "trending"
+            },
+            11: {
+                title: "Crystal Cascade",
+                price: "$1,499",
+                description: "Dazzling crystal necklace with multi-tiered design that creates spectacular light refraction. Each crystal is precision-cut for maximum brilliance.",
+                image: "https://imgur.com/fxUaMQ4",
+                category: "new"
+            },
+            12: {
+                title: "Enchanted Forest",
+                price: "$1,899",
+                description: "Emerald and diamond pieces inspired by mystical forest landscapes. The deep green stones symbolize growth and harmony.",
+                image: "https://imgur.com/LTpzHsW",
+                category: "exclusive"
+            },
+            13: {
+                title: "Cherry Blossom",
+                price: "$1,349",
+                description: "Delicate pink gold pieces with sakura-inspired designs. Celebrates the beauty and fleeting nature of spring blossoms.",
+                image: "https://imgur.com/mXV7gBZ",
+                category: "new"
+            },
+            14: {
+                title: "Diamond Eternity",
+                price: "$3,299",
+                description: "Eternity band with brilliant diamonds set in platinum. A timeless symbol of endless love and commitment.",
+                image: "https://imgur.com/A3LfT29",
+                category: "limited"
+            },
+            15: {
+                title: "Azure Mystique",
+                price: "$1,599",
+                description: "Blue topaz and silver necklace with mystical appeal. The serene blue stones are said to promote clarity and communication.",
+                image: "https://imgur.com/m0g8dYS",
+                category: "trending"
+            },
+            16: {
+                title: "Golden Spiral",
+                price: "$1,749",
+                description: "Mesmerizing spiral design in gold with diamond accents. Represents infinity and continuous growth in life.",
+                image: "https://imgur.com/RHdbyM9",
+                category: "all"
+            },
+            17: {
+                title: "Lavender Dreams",
+                price: "$1,299",
+                description: "Delicate lavender jade set in rose gold. The soft purple hues create a calming and sophisticated appearance.",
+                image: "https://imgur.com/Szffcti",
+                category: "new"
+            },
+            18: {
+                title: "Crystal Leaf",
+                price: "$1,099",
+                description: "Leaf-shaped earrings crafted from brilliant crystals. Captures the beauty of autumn foliage in wearable art form.",
+                image: "https://imgur.com/hDa2JGY",
+                category: "trending"
+            },
+            19: {
+                title: "Stellar Dreams",
+                price: "$1,449",
+                description: "Silver necklace with precisely cut gemstones creating a constellation pattern. Each stone represents a star in the night sky.",
+                image: "https://imgur.com/kPNgeOX",
+                category: "exclusive"
+            },
+            20: {
                 title: "Floral Elegance",
                 price: "$999",
-                description: "Two floral-inspired necklaces in silver and gold with intricate designs. Versatile pair celebrating nature's delicate beauty. Can be worn together or separately for different occasions.",
-                image: "https://z-cdn-media.chatglm.cn/files/5b2bc50d-d6a7-4723-a1d4-4611b477c5e0_IMG_20251012_002729.jpg?auth_key=1864593401-d646893adb8d496ab87963ce0d8dacb1-0-be2c87c8482b894354921f6b9570820a"
+                description: "Two floral-inspired necklaces with intricate designs. Versatile pieces celebrating nature's delicate beauty.",
+                image: "https://imgur.com/W3KH93q",
+                category: "all"
+            },
+            21: {
+                title: "Pearl Perfection",
+                price: "$1,199",
+                description: "Classic pearl necklace with gold accents. Timeless elegance that never goes out of style, perfect for any occasion.",
+                image: "https://imgur.com/17uGewM",
+                category: "all"
+            },
+            22: {
+                title: "Rose Gold Romance",
+                price: "$1,749",
+                description: "Delicate rose gold set with pink sapphires. Perfect for romantic occasions and expressing heartfelt emotions.",
+                image: "https://imgur.com/lBA0qGr",
+                category: "trending"
+            },
+            23: {
+                title: "Ocean Wave",
+                price: "$1,349",
+                description: "Fluid design inspired by ocean movements in silver and blue topaz. Captures the dynamic beauty of the sea.",
+                image: "https://imgur.com/zXIfG8s",
+                category: "new"
+            },
+            24: {
+                title: "Midnight Mystery",
+                price: "$2,199",
+                description: "Black diamonds and onyx set in white gold. Mysterious and captivating, perfect for evening elegance.",
+                image: "https://imgur.com/npOjtB5",
+                category: "limited"
+            },
+            25: {
+                title: "Sunset Radiance",
+                price: "$1,099",
+                description: "Warm citrine and gold pieces that glow with sunset colors. Brings warmth and positive energy to the wearer.",
+                image: "https://imgur.com/nrgbNfd",
+                category: "trending"
+            },
+            26: {
+                title: "Vintage Glamour",
+                price: "$1,599",
+                description: "Art deco inspired pieces with geometric patterns. Each piece reflects the sophistication of the Roaring Twenties.",
+                image: "https://imgur.com/FXHd5nO",
+                category: "exclusive"
+            },
+            27: {
+                title: "Forest Whisper",
+                price: "$1,899",
+                description: "Green tourmaline and diamonds in nature-inspired settings. Connects the wearer to the tranquility of nature.",
+                image: "https://imgur.com/CMztg71",
+                category: "new"
+            },
+            28: {
+                title: "Spring Bloom",
+                price: "$1,249",
+                description: "Pink gold with floral motifs and diamond accents. Celebrates renewal and the beauty of springtime.",
+                image: "https://imgur.com/kIJiFKb",
+                category: "trending"
+            },
+            29: {
+                title: "Diamond Infinity",
+                price: "$2,999",
+                description: "Infinity symbol adorned with diamonds in white gold. Represents eternal love and endless possibilities.",
+                image: "https://imgur.com/0puuuwV",
+                category: "limited"
+            },
+            30: {
+                title: "Azure Sky",
+                price: "$1,599",
+                description: "Blue sapphires and diamonds in celestial design. Captures the infinite beauty of the daytime sky.",
+                image: "https://imgur.com/QhhGmoY",
+                category: "exclusive"
+            },
+            31: {
+                title: "Golden Flow",
+                price: "$1,749",
+                description: "Fluid gold design with diamond highlights. Represents the flow of life and continuous movement.",
+                image: "https://imgur.com/s3iVoL3",
+                category: "all"
+            },
+            32: {
+                title: "Lavender Mist",
+                price: "$1,299",
+                description: "Soft lavender amethyst in rose gold setting. Creates a dreamy and romantic appearance.",
+                image: "https://imgur.com/ruRRtpN",
+                category: "new"
+            },
+            33: {
+                title: "Autumn Leaf",
+                price: "$1,099",
+                description: "Crystal and gold leaf design. Captures the warm colors and beauty of autumn foliage.",
+                image: "https://imgur.com/4DhDOLu",
+                category: "trending"
+            },
+            34: {
+                title: "Starlight",
+                price: "$1,449",
+                description: "Diamond constellation necklace in silver. Each diamond represents a star, creating your personal galaxy.",
+                image: "https://imgur.com/NK4CVZ3",
+                category: "exclusive"
+            },
+            35: {
+                title: "Garden Party",
+                price: "$999",
+                description: "Floral-inspired pieces with colorful gemstones. Perfect for spring and summer celebrations.",
+                image: "https://imgur.com/nxvRYVN",
+                category: "all"
+            },
+            36: {
+                title: "Classic Pearl",
+                price: "$1,199",
+                description: "Timeless pearl design with modern touches. Combines traditional elegance with contemporary style.",
+                image: "https://imgur.com/qSaBKBn",
+                category: "all"
+            },
+            37: {
+                title: "Romantic Rose",
+                price: "$1,749",
+                description: "Rose gold with pink tourmaline. Exudes romance and femininity with every detail.",
+                image: "https://imgur.com/QEZ3xNx",
+                category: "trending"
+            },
+            38: {
+                title: "Sea Foam",
+                price: "$1,349",
+                description: "Aquamarine and silver inspired by ocean foam. Light and airy design perfect for summer.",
+                image: "https://imgur.com/NotI5dR",
+                category: "new"
+            },
+            39: {
+                title: "Eclipse",
+                price: "$2,199",
+                description: "Black and white diamonds creating eclipse effect. Dramatic and sophisticated for special occasions.",
+                image: "https://imgur.com/y4S1ViE",
+                category: "limited"
+            },
+            40: {
+                title: "Golden Sunrise",
+                price: "$1,099",
+                description: "Warm gold and citrine capturing sunrise colors. Brings hope and new beginnings to the wearer.",
+                image: "https://imgur.com/8j4QokS",
+                category: "trending"
             }
         };
         
-        // Cart and wishlist
-        let cart = [];
-        let wishlist = [];
+        // Function to generate product cards
+        function generateProductCards() {
+            const productGrid = document.getElementById('product-grid');
+            productGrid.innerHTML = '';
+            
+            Object.keys(products).forEach(id => {
+                const product = products[id];
+                const badgeText = product.category === 'new' ? 'NEW' : 
+                                product.category === 'trending' ? 'TRENDING' :
+                                product.category === 'exclusive' ? 'EXCLUSIVE' :
+                                product.category === 'limited' ? 'LIMITED' : '';
+                
+                const productCard = `
+                    <div class="product-card" data-category="${product.category}" data-product-id="${id}">
+                        ${badgeText ? `<div class="product-badge">${badgeText}</div>` : ''}
+                        <div class="product-image">
+                            <img src="${product.image}" alt="${product.title}">
+                            <div class="product-actions">
+                                <div class="action-btn quick-view" data-product-id="${id}">
+                                    <i class="fas fa-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="product-info">
+                            <h3 class="product-title">${product.title}</h3>
+                            <p class="product-description">${product.description}</p>
+                            <div class="product-price">${product.price}</div>
+                            <a href="https://wa.me/9647503307830?text=I'm%20interested%20in%20${encodeURIComponent(product.title)}%20from%20your%20collection" class="whatsapp-btn" target="_blank">
+                                <i class="fab fa-whatsapp"></i> Order via WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                `;
+                productGrid.innerHTML += productCard;
+            });
+        }
         
-        // Create particles for the hero section
-        function createParticles() {
+        // Loading screen
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading-screen').classList.add('hide');
+            }, 2500);
+            
+            // Generate products after loading screen
+            generateProductCards();
+            
+            // Initialize event listeners
+            initializeEventListeners();
+        });
+        
+        // Initialize all event listeners
+        function initializeEventListeners() {
+            // Generate particles
+            generateParticles();
+            
+            // Filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const productCards = document.querySelectorAll('.product-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filter = button.getAttribute('data-filter');
+                    
+                    productCards.forEach(card => {
+                        if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+            
+            // Modal functionality
+            const modal = document.getElementById('product-modal');
+            const modalClose = document.querySelector('.modal-close');
+            const quickViewButtons = document.querySelectorAll('.quick-view');
+            
+            quickViewButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const productId = button.getAttribute('data-product-id');
+                    const product = products[productId];
+                    
+                    // Update modal content
+                    document.getElementById('modal-image').src = product.image;
+                    document.getElementById('modal-title').textContent = product.title;
+                    document.getElementById('modal-price').textContent = product.price;
+                    document.getElementById('modal-description').textContent = product.description;
+                    
+                    // Update WhatsApp button
+                    const whatsappButton = document.getElementById('modal-order-whatsapp');
+                    whatsappButton.setAttribute('href', `https://wa.me/9647503307830?text=I'm%20interested%20in%20${encodeURIComponent(product.title)}%20from%20your%20collection`);
+                    
+                    // Show modal
+                    modal.style.display = 'flex';
+                });
+            });
+            
+            modalClose.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+            
+            window.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+            
+            // Quantity selector
+            const decreaseBtn = document.querySelector('.decrease');
+            const increaseBtn = document.querySelector('.increase');
+            const quantityInput = document.querySelector('.quantity-input');
+            
+            decreaseBtn.addEventListener('click', () => {
+                if (quantityInput.value > 1) {
+                    quantityInput.value = parseInt(quantityInput.value) - 1;
+                }
+            });
+            
+            increaseBtn.addEventListener('click', () => {
+                if (quantityInput.value < 10) {
+                    quantityInput.value = parseInt(quantityInput.value) + 1;
+                }
+            });
+            
+            // WhatsApp button in modal
+            const modalWhatsappBtn = document.getElementById('modal-order-whatsapp');
+            modalWhatsappBtn.addEventListener('click', () => {
+                const productTitle = document.getElementById('modal-title').textContent;
+                const material = document.querySelector('.option-select').value;
+                const size = document.querySelectorAll('.option-select')[1].value;
+                const quantity = document.querySelector('.quantity-input').value;
+                
+                const message = `I'm interested in ${productTitle} from your collection.\nMaterial: ${material}\nSize: ${size}\nQuantity: ${quantity}`;
+                const whatsappUrl = `https://wa.me/9647503307830?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            });
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 100) {
+                    header.style.padding = '10px 0';
+                    header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
+                } else {
+                    header.style.padding = '15px 0';
+                    header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
+                }
+            });
+        }
+        
+        // Generate particles
+        function generateParticles() {
             const particlesContainer = document.getElementById('particles');
             const particleCount = 50;
             
@@ -1318,14 +1684,16 @@
                 const particle = document.createElement('div');
                 particle.classList.add('particle');
                 
-                // Random size between 2px and 8px
-                const size = Math.random() * 6 + 2;
+                // Random size between 5px and 15px
+                const size = Math.random() * 10 + 5;
                 particle.style.width = `${size}px`;
                 particle.style.height = `${size}px`;
                 
                 // Random position
-                particle.style.left = `${Math.random() * 100}%`;
-                particle.style.top = `${Math.random() * 100}%`;
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+                particle.style.left = `${posX}%`;
+                particle.style.top = `${posY}%`;
                 
                 // Random animation duration between 10s and 30s
                 const duration = Math.random() * 20 + 10;
@@ -1335,193 +1703,6 @@
                 particlesContainer.appendChild(particle);
             }
         }
-        
-        // Initialize particles when page loads
-        window.addEventListener('load', createParticles);
-        
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
-        });
-        
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.filter-btn');
-        const productCards = document.querySelectorAll('.product-card');
-        
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Update active button
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
-                
-                // Filter products
-                const filter = button.getAttribute('data-filter');
-                
-                productCards.forEach(card => {
-                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
-                        card.style.display = 'block';
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            });
-        });
-        
-        // Product modal functionality
-        const modal = document.getElementById('product-modal');
-        const modalClose = document.querySelector('.modal-close');
-        const modalImage = document.getElementById('modal-image');
-        const modalTitle = document.getElementById('modal-title');
-        const modalPrice = document.getElementById('modal-price');
-        const modalDescription = document.getElementById('modal-description');
-        
-        // Open modal when quick view is clicked
-        document.querySelectorAll('.quick-view').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product-id');
-                const product = products[productId];
-                
-                modalImage.src = product.image;
-                modalTitle.textContent = product.title;
-                modalPrice.textContent = product.price;
-                modalDescription.textContent = product.description;
-                
-                modal.style.display = 'flex';
-                
-                // Store current product ID for add to cart/wishlist buttons
-                modal.setAttribute('data-product-id', productId);
-            });
-        });
-        
-        // Close modal
-        modalClose.addEventListener('click', () => {
-            modal.style.display = 'none';
-        });
-        
-        window.addEventListener('click', (e) => {
-            if (e.target === modal) {
-                modal.style.display = 'none';
-            }
-        });
-        
-        // Quantity selector
-        const decreaseBtn = document.querySelector('.decrease');
-        const increaseBtn = document.querySelector('.increase');
-        const quantityInput = document.querySelector('.quantity-input');
-        
-        decreaseBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value);
-            if (value > 1) {
-                quantityInput.value = value - 1;
-            }
-        });
-        
-        increaseBtn.addEventListener('click', () => {
-            let value = parseInt(quantityInput.value);
-            if (value < 10) {
-                quantityInput.value = value + 1;
-            }
-        });
-        
-        // Toast notification
-        function showToast(message) {
-            const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.classList.add('show');
-            
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-        
-        // Add to cart functionality
-        function addToCart(productId, quantity = 1) {
-            const product = products[productId];
-            const existingItem = cart.find(item => item.id === productId);
-            
-            if (existingItem) {
-                existingItem.quantity += quantity;
-            } else {
-                cart.push({
-                    id: productId,
-                    title: product.title,
-                    price: product.price,
-                    image: product.image,
-                    quantity: quantity
-                });
-            }
-            
-            updateCartCount();
-            showToast(`${product.title} added to cart`);
-        }
-        
-        // Update cart count
-        function updateCartCount() {
-            const cartCount = document.querySelector('.cart-count');
-            const totalItems = cart.reduce((total, item) => total + item.quantity, 0);
-            cartCount.textContent = totalItems;
-        }
-        
-        // Add to cart button clicks
-        document.querySelectorAll('.add-to-cart').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
-                const productId = this.getAttribute('data-product-id');
-                addToCart(productId);
-            });
-        });
-        
-        // Modal add to cart button
-        document.getElementById('modal-add-to-cart').addEventListener('click', function() {
-            const productId = modal.getAttribute('data-product-id');
-            const quantity = parseInt(quantityInput.value);
-            addToCart(productId, quantity);
-            modal.style.display = 'none';
-        });
-        
-        // Add to wishlist functionality
-        function addToWishlist(productId) {
-            const product = products[productId];
-            
-            if (!wishlist.includes(productId)) {
-                wishlist.push(productId);
-                showToast(`${product.title} added to wishlist`);
-            } else {
-                showToast(`${product.title} is already in your wishlist`);
-            }
-        }
-        
-        // Add to wishlist button clicks
-        document.querySelectorAll('.add-to-wishlist').forEach(button => {
-            button.addEventListener('click', function() {
-                const productId = this.getAttribute('data-product-id');
-                addToWishlist(productId);
-            });
-        });
-        
-        // Modal add to wishlist button
-        document.getElementById('modal-add-to-wishlist').addEventListener('click', function() {
-            const productId = modal.getAttribute('data-product-id');
-            addToWishlist(productId);
-        });
-        
-        // Header scroll effect
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.padding = '10px 0';
-                header.style.boxShadow = '0 5px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.padding = '15px 0';
-                header.style.boxShadow = '0 2px 20px rgba(0,0,0,0.05)';
-            }
-        });
     </script>
 </body>
 </html>
